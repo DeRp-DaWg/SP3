@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-
 class Player {
 -String playerName
 -<ArrayList> addPlayer
@@ -14,7 +13,7 @@ class Team {
 }
 
 class Match {
--int id
+-int matchId
 +ShowMatchSchedule()
 +ShowNextMatch()
 +addPoints()
