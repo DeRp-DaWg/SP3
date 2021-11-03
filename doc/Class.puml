@@ -7,20 +7,25 @@ class Player {
 }
 
 class Team {
--String teamName
++String teamName
++Player players
 +AddMemberToTeam()
++RemoveMemberFromTeam()
 +String toString()
 }
 
 class Match{
--int matchId
+-int {static} IDCounter
++int matchID
 +addPoints()
 +getPoints()
 +String toString()
 }
 
 class Tournament {
--Team team
++Player players
++Team teams
++Match matches
 +ArrangeMatch()
 +getTeamPlacement()
 +getMatchSchedule()
