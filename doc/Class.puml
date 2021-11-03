@@ -9,25 +9,28 @@ class Player {
 class Team {
 -String teamName
 +AddMemberToTeam()
-+ShowTeam()
++String toString()
 }
 
-class Match {
+class Match{
 -int matchId
-+ShowMatchSchedule()
-+ShowNextMatch()
 +addPoints()
 +getPoints()
++String toString()
 }
 
 class Tournament {
 +ArrangeMatch()
-+ShowTeamPlacement()
++getTeamPlacement()
++String toString()
++getMatchSchedule()
++getNextMatch()
 }
 
 class TournamentOrganizer {
 -Player player
 +createTeam()
++String toString()
 }
 
 Tournament o-- "1" TournamentOrganizer
