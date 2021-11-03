@@ -1,27 +1,33 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
 
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class Player {
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Team {
 }
+
+class Match {
+}
+
+class Tournament {
+}
+
+class TournamentOrganizer {
+}
+
+class Ranking {
+}
+
+Tournament o-- "1" TournamentOrganizer
+Tournament *-- "8" Match
+Tournament *-- Player
+Tournament *-- Team
+Tournament *-- "1" Ranking
+Match o-- "2" Team
+Team o-- "2" Player
+TournamentOrganizer o-- Ranking
 
 @enduml
