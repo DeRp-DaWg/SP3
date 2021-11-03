@@ -26,6 +26,8 @@ class Tournament {
 }
 
 class TournamentOrganizer {
+-Player player
++createTeam()
 }
 
 Tournament o-- "1" TournamentOrganizer
