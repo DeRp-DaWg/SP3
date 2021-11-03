@@ -26,15 +26,15 @@ class Tournament {
 +Player players
 +Team teams
 +Match matches
-+ArrangeMatch()
-+getTeamPlacement()
-+getMatchSchedule()
-+getNextMatch()
++ArrangeMatches()
 +String toString()
 }
 
 class TournamentOrganizer {
 +createTeam()
++getMatchSchedule()
++getTeamPlacement()
++getNextMatch()
 }
 
 Tournament o-- "1" TournamentOrganizer
