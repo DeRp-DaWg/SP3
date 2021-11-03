@@ -27,7 +27,7 @@ Tournament *-- Player
 Tournament *-- Team
 Tournament *-- "1" Ranking
 Match o-- "2" Team
-Team o-- "2" Player
+Team o-- "2..0" Player
 TournamentOrganizer o-- Ranking
 
 @enduml
