@@ -17,16 +17,11 @@ class Tournament {
 class TournamentOrganizer {
 }
 
-class Ranking {
-}
-
 Tournament o-- "1" TournamentOrganizer
 Tournament *-- "8" Match
 Tournament *-- Player
 Tournament *-- Team
-Tournament *-- "1" Ranking
 Match o-- "2" Team
 Team o-- "2--*" Player
-TournamentOrganizer o-- Ranking
 
 @enduml
