@@ -3,22 +3,27 @@
 
 
 class Player {
+-String playerName
+-<ArrayList> addPlayer
 }
 
 class Team {
+-int teamName
 +AddMemberToTeam()
 +ShowTeam()
 }
 
 class Match {
-ShowMatchSchedule()
-ShowNextMatch()
+-int id
++ShowMatchSchedule()
++ShowNextMatch()
++addPoints()
++getPoints()
 }
 
 class Tournament {
 +ArrangeMatch()
 +ShowTeamPlacement()
-+Points()
 }
 
 class TournamentOrganizer {
