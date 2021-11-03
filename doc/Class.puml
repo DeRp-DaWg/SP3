@@ -7,7 +7,7 @@ class Player {
 }
 
 class Team {
--int teamName
+-String teamName
 +AddMemberToTeam()
 +ShowTeam()
 }
