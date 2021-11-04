@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+
 class Player {
 +String playerName
 }
@@ -22,12 +23,20 @@ class Match{
 +String toString()
 }
 
-class Tournament {
-+Player[] players
+abstract Tournament {
++String tournamentName
 +Team[] teams
 +Match[] matches
 +ArrangeMatches()
 +String toString()
+}
+
+class Knockout{
++ArrangeMatches()
+}
+
+class GroupTournament{
++ArrangeMatches()
 }
 
 class TournamentOrganizer {
@@ -40,9 +49,10 @@ class TournamentOrganizer {
 
 Tournament o-- "1" TournamentOrganizer
 Tournament *-- "8" Match
-Tournament *-- Player
 Tournament *-- Team
 Match o-- "2" Team
 Team o-- "2..*" Player
+Tournament <|-- Knockout
+Tournament <|-- GroupTournament
 
 @enduml
