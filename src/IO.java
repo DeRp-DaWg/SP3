@@ -22,7 +22,7 @@ public class IO {
         }
     }
 
-    public void add(String teamName, String[] players) throws IOException {
+    public void addToFile(String teamName, String[] players) throws IOException {
         writeFile.write(getData + "\n" + teamName + ", " + players);  //TILFØJ MERE
         writeFile.close();
     }
