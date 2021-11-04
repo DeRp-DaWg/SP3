@@ -3,9 +3,10 @@ import java.util.ArrayList;
 public class Team {
     private String teamName;
     private Player[] players;
-    private ArrayList<String> player = new ArrayList<>();
+    private String player[];
 
-    public Team(){
-        player.add("Abdi");
+    public Team(String teamName, String player[]){
+        this.teamName = teamName;
+        this.player = player;
     }
 }
