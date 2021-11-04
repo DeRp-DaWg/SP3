@@ -4,13 +4,13 @@ public class Team {
     private String teamName;
     private ArrayList<Player> players = new ArrayList<Player>();
 
-    public Team(String teamName, ArrayList<Player> players){
+    public Team(){
         this.teamName = teamName;
         this.players = players;
     }
 
     public void AddPlayer(Player player) {
-        this.players.add(player);
+        players.add(player);
     }
 
     public void RemovePlayer(int playerNr) {
