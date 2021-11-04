@@ -6,22 +6,25 @@ import java.util.Scanner;
 
 public class IO {
     private String getData = "";
+    private String fileName = "tournament.csv";
+    private File myFile = new File(fileName);
+    private FileWriter writeFile;
 
     public IO() throws IOException {
-        String fileName = "tournament.txt";
-        File myFile = new File(fileName);
         if(!myFile.exists()){
             myFile.createNewFile();
         }
 
-        FileWriter writeFile = new FileWriter(fileName);
-
+        writeFile = new FileWriter(fileName);
         Scanner sc = new Scanner(myFile);
         while (sc.hasNextLine()){
             getData = sc.nextLine() + getData;
         }
 
-        writeFile.write("");
+    }
+
+    public void add(String teamName, String[] teamPlayers) throws IOException {
+        writeFile.write(teamName + ", " + teamPlayers);
         writeFile.close();
     }
 }
