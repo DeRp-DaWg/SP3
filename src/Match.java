@@ -1,5 +1,20 @@
 public class Match {
-    private int IDCounter;
-    public Team[] teams;
-    public int matchID;
+    private Team[] teams;
+    private int points;
+
+    public Match(Team[] teams) {
+        this.teams = teams;
+    }
+
+    public void addPoints() {
+        points++;
+    }
+
+    public void addPoints(int amount) {
+        points += amount;
+    }
+
+    public int getPoints() {
+        return points;
+    }
 }
