@@ -1,14 +1,13 @@
 import java.util.Arrays;
 
 public abstract class Tournament {
-    public String tournamentName;
-    public Team[] teams;
-    public Match[] matches;
+    private String tournamentName;
+    private Team[] teams;
+    private Match[] matches;
 
-    public Tournament(String tournamentName, Team[] teams, Match[] matches) {
+    public Tournament(String tournamentName, Team[] teams) {
         this.tournamentName = tournamentName;
         this.teams = teams;
-        this.matches = matches;
     }
 
     public abstract void ArrangeMatches();

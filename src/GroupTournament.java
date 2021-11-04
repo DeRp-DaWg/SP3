@@ -1,7 +1,6 @@
 public class GroupTournament extends Tournament{
-
-    public GroupTournament(String tournamentName, Team[] teams, Match[] matches) {
-        super(tournamentName, teams, matches);
+    public GroupTournament(String tournamentName, Team[] teams) {
+        super(tournamentName, teams);
     }
 
     @Override
