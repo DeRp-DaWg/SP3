@@ -11,9 +11,7 @@ public abstract class Tournament {
         this.matches = matches;
     }
 
-    public abstract ArrangeMatches(){
-
-    }
+    public abstract ArrangeMatches();
 
     @Override
     public String toString() {
