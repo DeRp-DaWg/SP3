@@ -60,7 +60,7 @@ Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
 Team o-- "2..*" Player
-Tournament <|-- Knockout
+Tournament <|-- KnockoutTournament
 Tournament <|-- GroupTournament
 
 @enduml
