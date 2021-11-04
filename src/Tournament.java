@@ -1,2 +1,5 @@
-public class Tournament {
+public abstract class Tournament {
+    public Tournament(){
+
+    }
 }
