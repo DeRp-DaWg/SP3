@@ -20,11 +20,10 @@ public class IO {
         while (sc.hasNextLine()){
             getData = sc.nextLine() + getData;
         }
-
     }
 
-    public void add(String teamName, String[] teamPlayers) throws IOException {
-        writeFile.write(teamName + ", " + teamPlayers);
+    public void add(String teamName, String[] players) throws IOException {
+        writeFile.write(getData + "\n" + teamName + ", " + players);  //TILFØJ MERE
         writeFile.close();
     }
 }
