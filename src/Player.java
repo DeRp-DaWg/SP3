@@ -2,7 +2,7 @@
         String Name;
 
         public Player(String name) {
-            Name = name;
+            this.Name = name;
         }
     }
 
