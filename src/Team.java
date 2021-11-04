@@ -4,8 +4,13 @@ public class Team {
     private String teamName;
     private ArrayList<Player> players = new ArrayList<Player>();
 
-    public Team(){
+    public Team(String teamName){
         this.teamName = teamName;
+    }
+
+    // Den her metode behøver kun at være her midlertidigt for at gøre det nemmere at teste programmet.
+    // Undgå at bruge den for meget og brug AddPlayer() i stedet.
+    public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
 
