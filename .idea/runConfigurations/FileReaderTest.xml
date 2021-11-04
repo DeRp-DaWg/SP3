@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="FileReaderTest" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="FileReaderTest" />
+    <module name="Turnering" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
