@@ -1,8 +1,7 @@
  public class Player {
-        String Name;
-
+        String name;
         public Player(String name) {
-            this.Name = name;
+            this.name = name;
         }
     }
 

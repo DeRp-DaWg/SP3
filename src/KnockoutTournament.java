@@ -1,7 +1,7 @@
 public class KnockoutTournament extends Tournament {
 
     public KnockoutTournament(String tournamentName, Team[] teams, Match[] matches) {
-        super(tournamentName, teams, matches);
+        super(tournamentName, teams);
         int opponentScored = 0;
         int goalsScored = 0;
         int score;
