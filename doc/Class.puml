@@ -31,7 +31,7 @@ abstract Tournament {
 +String toString()
 }
 
-class Knockout{
+class KnockoutTournament{
 +ArrangeMatches()
 }
 
@@ -39,7 +39,7 @@ class GroupTournament{
 +ArrangeMatches()
 }
 
-class TournamentOrganizer {
+class UI {
 +createPlayer()
 +createTeam()
 +getMatchSchedule()
@@ -47,12 +47,20 @@ class TournamentOrganizer {
 +getNextMatch()
 }
 
-Tournament o-- "1" TournamentOrganizer
+class IO {
+}
+
+class Main{
+}
+
+Main o-- Tournament
+Main o-- IO
+Tournament o-- "1" UI
 Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
 Team o-- "2..*" Player
-Tournament <|-- Knockout
+Tournament <|-- KnockoutTournament
 Tournament <|-- GroupTournament
 
 @enduml
