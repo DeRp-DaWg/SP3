@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,8 +8,11 @@ public class UI {
     String[] playerNames;
     ArrayList<Player> players = new ArrayList<>();
     Player player;
+    Team team;
 
-    public UI(){
+    IO io = new IO();
+
+    public UI() throws IOException {
         String[] players = {"Rehman", "Jens"};
         //Team team = new Team("TeamA", players);
         createPlayers();
@@ -25,11 +29,12 @@ public class UI {
         System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
         playerNames = sc.nextLine().split(",");
 
-        Team team = new Team(teamName);
+        team = new Team(teamName);
 
         for (String playerName : playerNames) {
             player = new Player(playerName);
             team.addPlayer(player);
+            //io.addToFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
         }
 
     }
