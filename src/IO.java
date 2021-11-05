@@ -46,11 +46,16 @@ public class IO {
             String teamName = string[0];
             String[] teamMembers = string[1].split("\\|");
             String[] matchText = string[2].split("\\|");
-            for (String match : matchText) {
-                String[] test = match.split("\\.");
+            String[][] matches = new String[2][];
+            for (int i = 0; i < matchText.length; i++) {
+                matches[i] = matchText[i].split("\\.");
+                System.out.println(matches[0][0]);
+                //for (String[] match : matches) {
+                //    System.out.println(match[i]);
+                //}
             }
             for (int i = 0; i < matchText.length; i++) {
-                System.out.print(matchText[i]);
+                //System.out.print("   "+matchText[i]);
             }
         }
     }
