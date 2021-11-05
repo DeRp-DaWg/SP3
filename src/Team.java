@@ -14,11 +14,11 @@ public class Team {
         this.players = players;
     }
 
-    public void AddPlayer(Player player) {
+    public void addPlayer(Player player) {
         players.add(player);
     }
 
-    public void RemovePlayer(int playerNr) {
+    public void removePlayer(int playerNr) {
         this.players.remove(playerNr - 1);
     }
 

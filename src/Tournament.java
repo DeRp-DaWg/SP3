@@ -12,6 +12,18 @@ public abstract class Tournament {
 
     public abstract void ArrangeMatches();
 
+    public String getTournamentName() {
+        return tournamentName;
+    }
+
+    public Team[] getTeams() {
+        return teams;
+    }
+
+    public Match[] getMatches() {
+        return matches;
+    }
+
     @Override
     public String toString() {
         return "Tournament{" +
