@@ -6,6 +6,7 @@ public class UI {
     Scanner sc;
     String[] playerNames;
     ArrayList<Player> players = new ArrayList<>();
+    Player player;
 
     public UI(){
         String[] players = {"Rehman", "Jens"};
@@ -26,9 +27,8 @@ public class UI {
         Team team = new Team(teamName);
 
         for (String playerName : playerNames) {
-            Player player = new Player(playerName);
-            players.add(player);
-            //team.addPlayer();
+            player = new Player(playerName);
+            team.addPlayer(player);
         }
 
     }
