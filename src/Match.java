@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Match {
     private Team[] teams;
     private int points;
-    ArrayList<String> addMatch = new ArrayList<>();
+    ArrayList<String> myMatch = new ArrayList<>();
 
     public Match(Team[] teams) {
         this.teams = teams;
@@ -21,8 +21,9 @@ public class Match {
         return points;
     }
 
-    public void createMatches(Team team){
+    public ArrayList<String> createMatches(Team team){
         String makeMatch = team + "," + team;
-        addMatch.add(makeMatch);
+        myMatch.add(makeMatch);
+        return myMatch;
     }
 }
