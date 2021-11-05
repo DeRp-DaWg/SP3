@@ -9,12 +9,10 @@ public class UI {
     ArrayList<Player> players = new ArrayList<>();
     Player player;
     Team team;
-
     IO io = new IO();
 
     public UI() throws IOException {
         String[] players = {"Rehman", "Jens"};
-        //Team team = new Team("TeamA", players);
         createPlayers();
     }
 
@@ -36,6 +34,9 @@ public class UI {
             team.addPlayer(player);
             //io.addToFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
         }
+    }
+
+    public void announce(){
 
     }
 }
