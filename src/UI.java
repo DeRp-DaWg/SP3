@@ -9,7 +9,7 @@ public class UI {
     ArrayList<Player> players = new ArrayList<>();
     Player player;
     Team team;
-    IO io = new IO();
+    IO io = new IO("TournamentTestFile.csv");
 
     public UI() throws IOException {
         String[] players = {"Rehman", "Jens"};
