@@ -23,9 +23,13 @@ public class UI {
         System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
         playerNames = sc.nextLine().split(",");
 
+        Team team = new Team(teamName);
+
         for (String playerName : playerNames) {
             Player player = new Player(playerName);
             players.add(player);
+            //team.addPlayer();
         }
+
     }
 }
