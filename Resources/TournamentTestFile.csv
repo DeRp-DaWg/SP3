@@ -1,4 +1,5 @@
-Team Name,{Team Members},{{Match Name, Match Score},{Match Name, Match Score}},
-Hello,{Player1,Player2},{QuarterFinals1,SemiFinals1},
-World,{Player3,Player4},{},
-
+Team Name,{Team Members},{{Match Name, Match Score},{Match Name, Match Score}}
+Hello,{Player1,Player2},{{QuarterFinals1, 6},{SemiFinals1,-5}}
+World,{Player3,Player4},{{QuarterFinals1, -6}}
+Team3,{Player5,Player6},{{QuarterFinals2, 9},{SemiFinals1,5}}
+Team4,{Player7,Player8},{{QuarterFinals2, -9}}
