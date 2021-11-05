@@ -1,5 +1,13 @@
+import java.io.IOException;
+
 public class FileReaderTest {
     public static void main(String[] args) {
-        System.out.println("Hello!");
+        try {
+            IO io = new IO("TournamentTestFile.csv");
+            io.readFromFile();
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
