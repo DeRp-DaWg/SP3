@@ -9,9 +9,11 @@ public class IO {
     private FileWriter writeFile;
     private File myFile;
     private Scanner sc;
+    private String fileName;
 
     public IO(String fileName) throws IOException {
-        File myFile = new File("Resources/"+fileName);
+        this.fileName = fileName;
+        myFile = new File("Resources/"+fileName+".csv");
         if(!myFile.exists()){
             myFile.createNewFile();
         }
@@ -42,21 +44,27 @@ public class IO {
         for (int i = 0; i < lines.length; i++) {
             text[i] = lines[i].split(",");
         }
-        for (String[] string : text) {
-            String teamName = string[0];
-            String[] teamMembers = string[1].split("\\|");
-            String[] matchText = string[2].split("\\|");
+        Team[] teams = new Team[4];
+        //Match[] matches = new Match[3];
+        for (int i = 0; i < text.length; i++) {
+            String teamName = text[i][0];
+            String[] teamMembers = text[i][1].split("\\|");
+            String[] matchText = text[i][2].split("\\|");
             String[][] matches = new String[2][];
-            for (int i = 0; i < matchText.length; i++) {
-                matches[i] = matchText[i].split("\\.");
-                System.out.println(matches[0][0]);
-                //for (String[] match : matches) {
-                //    System.out.println(match[i]);
-                //}
+            for (int j = 0; j < matchText.length; j++) {
+                matches[j] = matchText[j].split("\\.");
             }
-            for (int i = 0; i < matchText.length; i++) {
-                //System.out.print("   "+matchText[i]);
+            teams[i] = new Team(teamName);
+            for (String teamMember : teamMembers) {
+                Player player = new Player(teamMember);
+                teams[i].addPlayer(player);
             }
         }
+        //for (int i = 0; i < text.length; i++) {
+        //    Team team = new Team(teamName);
+        //
+        //}
+        //Tournament tournament = new KnockoutTournament(fileName, teams, matches);
+        //return tournament;
     }
 }
