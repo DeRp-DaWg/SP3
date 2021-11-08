@@ -7,18 +7,18 @@ import java.util.Scanner;
 public class IO {
     private String getData = "";
     private FileWriter writeFile;
-    private File myFile;
+    private File teamFile;
     private Scanner sc;
-    private String fileName;
+    private String teamFileName = "teams.txt";
+    private String matchData = "match-data.txt";
 
-    public IO(String fileName) throws IOException {
-        this.fileName = fileName;
-        myFile = new File("Resources/"+fileName+".txt");
-        if(!myFile.exists()){
-            myFile.createNewFile();
+    public IO() throws IOException {
+        teamFile = new File("Resources/"+teamFileName);
+        if(!teamFile.exists()){
+            teamFile.createNewFile();
         }
 
-        writeFile = new FileWriter(fileName);
+        writeFile = new FileWriter(teamFileName);
 
     }
 
@@ -29,7 +29,7 @@ public class IO {
 
     //Test
     public void readFile() throws FileNotFoundException {
-        sc = new Scanner(myFile);
+        sc = new Scanner(teamFile);
         while (sc.hasNextLine()){
             getData = sc.nextLine() + getData;
         }

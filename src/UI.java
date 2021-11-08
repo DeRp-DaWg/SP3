@@ -34,7 +34,7 @@ public class UI {
 
         team = new Team(teamName);
 
-        IO io = new IO("tournament");
+        IO io = new IO();
 
         for (String playerName : playerNames) {
             player = new Player(playerName);
