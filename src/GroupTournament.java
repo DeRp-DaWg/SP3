@@ -1,3 +1,9 @@
+import java.lang.reflect.Array;
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class GroupTournament extends Tournament{
 
     public GroupTournament(String tournamentName, Team[] teams, Match[] matches)
@@ -29,6 +35,19 @@ public class GroupTournament extends Tournament{
         } else {
             loserTeamGoalScore(team2GoalScore,team1GoalScore);
         }
+    }
+
+    public Team[] ScoreBoard(){
+    Team[] scoreBoard;
+    Team[] teams = getTeams();
+    for (int i = 0; i > teams.length - 1; i++) {
+        if (teams[i].getGoalScore() > teams[i + 1].getGoalScore()) {
+            Team temp = teams[i];
+
+        }
+    }
+
+
     }
 
     @Override
