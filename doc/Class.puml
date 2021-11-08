@@ -38,6 +38,7 @@ class KnockoutTournament{
 
 class GroupTournament{
 +ArrangeMatches()
++int goalScore()
 }
 
 class UI {
