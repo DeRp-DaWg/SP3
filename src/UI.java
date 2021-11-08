@@ -10,7 +10,6 @@ public class UI {
     private ArrayList<Player> players = new ArrayList<>();
     private Player player;
     private Team team;
-    private IO io = new IO("TournamentTestFile.csv");
 
     public UI() throws IOException {
         createPlayers();
