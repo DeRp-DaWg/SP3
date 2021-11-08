@@ -5,6 +5,5 @@ public class Main {
         Team team1 = new Team("Team 1");
         Team team2 = new Team("Team 2");
         Team[] teams = {team1,team2};
-        Tournament tournament = new GroupTournament("Tournament 1",teams);
     }
 }

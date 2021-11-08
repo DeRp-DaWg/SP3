@@ -12,7 +12,6 @@ public class UI {
     IO io = new IO("TournamentTestFile.csv");
 
     public UI() throws IOException {
-        String[] players = {"Rehman", "Jens"};
         createPlayers();
     }
 
