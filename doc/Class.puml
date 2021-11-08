@@ -20,30 +20,44 @@ class Team {
 
 class Match{
 -Team[] teams
-+addPoints()
-+getPoints()
-+String toString()
++createMatches()
 }
 
 abstract Tournament {
-+String tournamentName
-+Team[] teams
-+Match[] matches
+-String tournamentName
+-Team[] teams
+-Match[] matches
 +{abstract}ArrangeMatches()
++getTournamentName()
++getTeam()
++getMatches()
 +String toString()
 }
 
 class KnockoutTournament{
++winnerTeamNewTotalScore()
++loserTeamNewTotalScore()
++determineWinnerTeamOutcome()
++determineLoserTeamOutcome()
 +ArrangeMatches()
-+int goalScore()
 }
 
 class GroupTournament{
++winnerTeamNewTotalScore()
++loserTeamNewTotalScore()
++determineWinnerTeamOutcome()
++determineLoserTeamOutcome()
 +ArrangeMatches()
-+int goalScore()
 }
 
 class UI {
+String tournamentType
+String teamName
+Scanner sc
+String[] playerNames
+ArrayList<Player> players
+Player player
+Team team
 +createPlayer()
 +createTeam()
 +getMatchSchedule()
@@ -52,9 +66,13 @@ class UI {
 }
 
 class IO {
-+String getData()
-+String Filewriter()
-+String filename()
+-String fileName
+-String getData
+-FileWriter writeFile
+-private File myFile
+-Scanner sc
++addToFile()
++readFromFile()
 }
 
 class Main{
