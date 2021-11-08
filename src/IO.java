@@ -66,6 +66,7 @@ public class IO {
         //Tournament tournament = new KnockoutTournament(fileName, teams, matches);
         //return tournament;
     }*/
+
     //Test
     public void readFile() throws FileNotFoundException {
         sc = new Scanner(myFile);
