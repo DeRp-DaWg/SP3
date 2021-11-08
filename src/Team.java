@@ -7,7 +7,7 @@ public class Team {
     private int goalScore = 0;
     private boolean lostLastMatch = false;
 
-    public Team(String teamName, int matchScore, int goalScore, boolean lostLastMatch){
+    public Team(String teamName){
         this.teamName = teamName;
         this.matchScore = matchScore;
         this.goalScore = goalScore;

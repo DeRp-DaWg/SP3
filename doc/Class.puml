@@ -2,22 +2,24 @@
 'https://plantuml.com/class-diagram
 
 class Player {
-+String playerName
-+String getName
+-String playerName
++String getName()
 }
 
 class Team {
-+String teamName
-+Player[] players
-+AddMemberToTeam()
-+RemoveMemberFromTeam()
+-String teamName
+-int matchScore
+-int goalScore
+-boolean lostLastMatch
+-Player[] players
++setPlayers()
++addPlayer()
++removePlayer()
 +String toString()
 }
 
 class Match{
--int {static} IDCounter
-+Team[] teams
-+int matchID
+-Team[] teams
 +addPoints()
 +getPoints()
 +String toString()
@@ -27,7 +29,7 @@ abstract Tournament {
 +String tournamentName
 +Team[] teams
 +Match[] matches
-+ArrangeMatches()
++{abstract}ArrangeMatches()
 +String toString()
 }
 
