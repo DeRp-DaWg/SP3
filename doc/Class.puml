@@ -51,12 +51,13 @@ class GroupTournament{
 }
 
 class UI {
-String tournamentType
-String teamName
-Scanner sc
-String[] playerNames
-Player player
-Team team
+-String tournamentType
+-String teamName
+-Scanner sc
+-String[] playerNames
+-Player player
+-Team team
+-IO io
 +createPlayer()
 +createTeam()
 +getMatchSchedule()
