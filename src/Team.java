@@ -3,9 +3,15 @@ import java.util.ArrayList;
 public class Team {
     private String teamName;
     private ArrayList<Player> players = new ArrayList<Player>();
+    private int matchScore = 0;
+    private int goalScore = 0;
+    private boolean lostLastMatch = false;
 
-    public Team(String teamName){
+    public Team(String teamName, int matchScore, int goalScore, boolean lostLastMatch){
         this.teamName = teamName;
+        this.matchScore = matchScore;
+        this.goalScore = goalScore;
+        this.lostLastMatch = lostLastMatch;
     }
 
     // Den her metode behøver kun at være her midlertidigt for at gøre det nemmere at teste programmet.
