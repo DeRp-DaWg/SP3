@@ -55,7 +55,7 @@ public class IO {
                 matches[j] = matchText[j].split("\\.");
             }
 
-            teams[i] = new Team(teamName);
+            //teams[i] = new Team(teamName);
             for (String teamMember : teamMembers) {
                 Player player = new Player(teamMember);
                 teams[i].addPlayer(player);
