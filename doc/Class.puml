@@ -55,7 +55,6 @@ String tournamentType
 String teamName
 Scanner sc
 String[] playerNames
-ArrayList<Player> players
 Player player
 Team team
 +createPlayer()
@@ -69,7 +68,7 @@ class IO {
 -String fileName
 -String getData
 -FileWriter writeFile
--private File myFile
+-File myFile
 -Scanner sc
 +addToFile()
 +readFromFile()
