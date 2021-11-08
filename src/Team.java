@@ -20,6 +20,22 @@ public class Team {
         this.players = players;
     }
 
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public int getMatchScore() {
+        return matchScore;
+    }
+
+    public int getGoalScore() {
+        return goalScore;
+    }
+
     public void addPlayer(Player player) {
         players.add(player);
     }
