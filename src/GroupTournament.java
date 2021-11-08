@@ -40,8 +40,11 @@ public class GroupTournament extends Tournament{
     public Team[] ScoreBoard(){
     Team[] scoreBoard;
     Team[] teams = getTeams();
-    for (int i = 0; i > getTeams().length - 1; i++) {
-        if (teams.goalScore
+    for (int i = 0; i > teams.length - 1; i++) {
+        if (teams[i].getGoalScore() > teams[i + 1].getGoalScore()) {
+            Team temp = teams[i];
+
+        }
     }
 
 
