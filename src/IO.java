@@ -13,7 +13,7 @@ public class IO {
 
     public IO(String fileName) throws IOException {
         this.fileName = fileName;
-        myFile = new File("Resources/"+fileName+".csv");
+        myFile = new File("Resources/"+fileName+".txt");
         if(!myFile.exists()){
             myFile.createNewFile();
         }
