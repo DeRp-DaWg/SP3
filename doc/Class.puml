@@ -68,7 +68,7 @@ class IO {
 -String fileName
 -String getData
 -FileWriter writeFile
--private File myFile
+-File myFile
 -Scanner sc
 +addToFile()
 +readFromFile()
