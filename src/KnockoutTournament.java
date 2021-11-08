@@ -2,7 +2,6 @@ public class KnockoutTournament extends Tournament {
 
     public KnockoutTournament(String tournamentName, Team[] teams, Match[] matches) {
         super(tournamentName, teams);
-
     }
 
     // For use in determineWinnerTeamOutcome() method
