@@ -54,6 +54,7 @@ public class IO {
             for (int j = 0; j < matchText.length; j++) {
                 matches[j] = matchText[j].split("\\.");
             }
+            // Har tilføjet tre nye variabler (to ints og en boolean) i Team klassen, det har gjort at nedenstående kode får en fejl.
             teams[i] = new Team(teamName);
             for (String teamMember : teamMembers) {
                 Player player = new Player(teamMember);
