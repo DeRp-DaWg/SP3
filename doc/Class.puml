@@ -55,7 +55,6 @@ String tournamentType
 String teamName
 Scanner sc
 String[] playerNames
-ArrayList<Player> players
 Player player
 Team team
 +createPlayer()
