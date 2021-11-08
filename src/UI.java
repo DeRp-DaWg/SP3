@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
+    String tournamentType = "";
     String teamName = "";
     Scanner sc;
     String[] playerNames;
@@ -17,6 +18,10 @@ public class UI {
 
     public void createPlayers(){
         sc = new Scanner(System.in);
+
+        //Vælg turneringstype
+        System.out.println("Tryk k for knockout-turnering, eller g for gruppeturnering: ");
+        tournamentType = sc.nextLine();
 
         //Get teamname
         System.out.println("Holdnavn: ");
