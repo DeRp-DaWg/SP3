@@ -27,6 +27,15 @@ public class IO {
         writeFile.close();
     }
 
+    //Test
+    public void readFile() throws FileNotFoundException {
+        sc = new Scanner(myFile);
+        while (sc.hasNextLine()){
+            getData = sc.nextLine() + getData;
+        }
+        System.out.println("\n" + getData);
+    }
+
     /*
     public void readFromFile() {
         String[] lines = new String[4];
@@ -67,12 +76,4 @@ public class IO {
         //return tournament;
     }*/
 
-    //Test
-    public void readFile() throws FileNotFoundException {
-        sc = new Scanner(myFile);
-        while (sc.hasNextLine()){
-            getData = sc.nextLine() + getData;
-        }
-        System.out.println("\n" + getData);
-    }
 }

@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
-    String tournamentType = "";
-    String teamName = "";
-    Scanner sc;
-    String[] playerNames;
-    ArrayList<Player> players = new ArrayList<>();
-    Player player;
-    Team team;
-    IO io = new IO("TournamentTestFile.csv");
+    private String tournamentType = "";
+    private String teamName = "";
+    private Scanner sc;
+    private String[] playerNames;
+    private ArrayList<Player> players = new ArrayList<>();
+    private Player player;
+    private Team team;
+    private IO io = new IO("TournamentTestFile.csv");
 
     public UI() throws IOException {
         createPlayers();
