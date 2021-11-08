@@ -3,6 +3,7 @@
 
 class Player {
 +String playerName
++String getName
 }
 
 class Team {
@@ -32,6 +33,7 @@ abstract Tournament {
 
 class KnockoutTournament{
 +ArrangeMatches()
++int goalScore()
 }
 
 class GroupTournament{
@@ -47,6 +49,9 @@ class UI {
 }
 
 class IO {
++String getData()
++String Filewriter()
++String filename()
 }
 
 class Main{
