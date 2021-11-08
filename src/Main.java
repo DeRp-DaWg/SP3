@@ -12,6 +12,5 @@ public class Main {
         //Match[] matches = {match1};
 
         //Tournament tournament = new GroupTournament("Tournament 1",teams,matches);
-
     }
 }

@@ -16,8 +16,10 @@ public class UI {
         createPlayers();
     }
 
-    public void createPlayers(){
+    public void createPlayers() throws IOException {
         sc = new Scanner(System.in);
+
+        //Spørg også om turneringsformanden vil se en oversigt over alle kampene
 
         //Vælg turneringstype
         System.out.println("Tryk k for knockout-turnering, eller g for gruppeturnering: ");
@@ -33,11 +35,15 @@ public class UI {
 
         team = new Team(teamName);
 
+        IO io = new IO("tournament");
+
         for (String playerName : playerNames) {
             player = new Player(playerName);
             team.addPlayer(player);
-            //io.addToFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
+            //io.addToNewFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
         }
+
+        io.readFile();
     }
 
     public void announce(){

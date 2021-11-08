@@ -19,17 +19,15 @@ public class IO {
         }
 
         writeFile = new FileWriter(fileName);
-        sc = new Scanner(myFile);
-        //while (sc.hasNextLine()){
-        //    getData = sc.nextLine() + getData;
-        //}
+
     }
 
-    public void addToFile(String teamName, String[] players) throws IOException {
+    public void addToNewFile(String teamName, String[] players) throws IOException {
         writeFile.write(getData + "\n" + teamName + ", " + players);  //TILFØJ MERE
         writeFile.close();
     }
 
+    /*
     public void readFromFile() {
         String[] lines = new String[4];
         int count = 0;
@@ -67,5 +65,14 @@ public class IO {
         //}
         //Tournament tournament = new KnockoutTournament(fileName, teams, matches);
         //return tournament;
+    }*/
+
+    //Test
+    public void readFile() throws FileNotFoundException {
+        sc = new Scanner(myFile);
+        while (sc.hasNextLine()){
+            getData = sc.nextLine() + getData;
+        }
+        System.out.println("\n" + getData);
     }
 }
