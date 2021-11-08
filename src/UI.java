@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
+    String tournamentType = "";
     String teamName = "";
     Scanner sc;
     String[] playerNames;
@@ -18,6 +19,10 @@ public class UI {
     public void createPlayers(){
         sc = new Scanner(System.in);
 
+        //Vælg turneringstype
+        System.out.println("Tryk k for knockout-turnering, eller g for gruppeturnering");
+        tournamentType = sc.nextLine();
+
         //Get teamname
         System.out.println("Holdnavn: ");
         teamName = sc.nextLine();
@@ -26,7 +31,7 @@ public class UI {
         System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
         playerNames = sc.nextLine().split(",");
 
-        team = new Team(teamName);
+
 
         for (String playerName : playerNames) {
             player = new Player(playerName);
