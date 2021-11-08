@@ -20,7 +20,7 @@ public class UI {
         sc = new Scanner(System.in);
 
         //Vælg turneringstype
-        System.out.println("Tryk k for knockout-turnering, eller g for gruppeturnering");
+        System.out.println("Tryk k for knockout-turnering, eller g for gruppeturnering: ");
         tournamentType = sc.nextLine();
 
         //Get teamname
@@ -31,7 +31,7 @@ public class UI {
         System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
         playerNames = sc.nextLine().split(",");
 
-
+        team = new Team(teamName);
 
         for (String playerName : playerNames) {
             player = new Player(playerName);
