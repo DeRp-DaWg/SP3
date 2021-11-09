@@ -57,7 +57,6 @@ class UI {
 -String[] playerNames
 -Player player
 -Team team
--IO io
 +createPlayer()
 +createTeam()
 +getMatchSchedule()
@@ -75,12 +74,9 @@ class IO {
 +readFromFile()
 }
 
-class Main{
-}
 
-Main o-- Tournament
-Main o-- IO
-Tournament o-- "1" UI
+UI o-- Tournament
+UI o-- IO
 Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
