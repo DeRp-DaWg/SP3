@@ -69,11 +69,12 @@ class UI {
 }
 
 class IO {
--String fileName
 -String getData
 -FileWriter writeFile
--File myFile
+-File teamFile
 -Scanner sc
+-String teamFileName
+-String matchData
 +addPointsToTeam()
 +readFromFile()
 }
