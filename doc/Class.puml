@@ -1,6 +1,10 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+class Main{
+-UI ui
+}
+
 class Player {
 -String playerName
 +String getName()
@@ -47,7 +51,7 @@ class KnockoutTournament{
 }
 
 class GroupTournament{
-Team[] ScoreBoard
+-Team[] ScoreBoard
 +winnerTeamNewTotalScore()
 +loserTeamNewTotalScore()
 +determineWinnerTeamOutcome()
@@ -79,7 +83,7 @@ class IO {
 +addPointsToTeam()
 +readFromFile()
 }
-class Main{}
+
 
 UI o-- Tournament
 UI o-- IO
