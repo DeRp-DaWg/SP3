@@ -78,7 +78,7 @@ class IO {
 +addPointsToTeam()
 +readFromFile()
 }
-
+class Main{}
 
 UI o-- Tournament
 UI o-- IO
@@ -88,5 +88,5 @@ Match o-- "2" Team
 Team o-- "2..*" Player
 Tournament <|-- KnockoutTournament
 Tournament <|-- GroupTournament
-
+Main o-- UI
 @enduml
