@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class GroupTournament extends Tournament {
 
     public GroupTournament(String tournamentName, Team[] teams, Match[] matches) {

@@ -43,6 +43,7 @@ class KnockoutTournament{
 }
 
 class GroupTournament{
+Team[] ScoreBoard
 +winnerTeamNewTotalScore()
 +loserTeamNewTotalScore()
 +determineWinnerTeamOutcome()
