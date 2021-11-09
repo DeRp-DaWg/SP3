@@ -35,6 +35,10 @@ abstract Tournament {
 }
 
 class KnockoutTournament{
+-int winnerTeamMatchScore;
+-int loserTeamMatchScore
+-int goalScore = winnerTeamMatchScore - loserTeamMatchScore;
+
 +winnerTeamNewTotalScore()
 +loserTeamNewTotalScore()
 +determineWinnerTeamOutcome()
@@ -58,7 +62,6 @@ class UI {
 -String[] playerNames
 -Player player
 -Team team
--IO io
 +createPlayer()
 +createTeam()
 +getMatchSchedule()
@@ -67,21 +70,19 @@ class UI {
 }
 
 class IO {
--String fileName
 -String getData
 -FileWriter writeFile
--File myFile
+-File teamFile
 -Scanner sc
-+addToFile()
+-String teamFileName
+-String matchData
++addPointsToTeam()
 +readFromFile()
 }
 
-class Main{
-}
 
-Main o-- Tournament
-Main o-- IO
-Tournament o-- "1" UI
+UI o-- Tournament
+UI o-- IO
 Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
