@@ -35,6 +35,10 @@ abstract Tournament {
 }
 
 class KnockoutTournament{
+-int winnerTeamMatchScore;
+-int loserTeamMatchScore
+-int goalScore = winnerTeamMatchScore - loserTeamMatchScore;
+
 +winnerTeamNewTotalScore()
 +loserTeamNewTotalScore()
 +determineWinnerTeamOutcome()
@@ -70,7 +74,7 @@ class IO {
 -FileWriter writeFile
 -File myFile
 -Scanner sc
-+addToFile()
++addPointsToTeam()
 +readFromFile()
 }
 
