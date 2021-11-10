@@ -24,8 +24,12 @@ class Team {
 
 class Match{
 -Team[] teams
--int matchGoalScore;
--String matchName;
+-int matchGoalScore
+-String matchName
+
++setMatchGoalScore()
++getMatchGoalScore()
++getMatchName()
 }
 
 abstract Tournament {
