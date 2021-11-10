@@ -3,13 +3,13 @@ import java.util.ArrayList;
 public class Team {
     private String teamName;
     private ArrayList<Player> players = new ArrayList<Player>();
-    private int matchScore = 0;
+    private int matchTournamentScore = 0;
     private int goalScore = 0;
     private boolean lostLastMatch = false;
 
     public Team(String teamName){
         this.teamName = teamName;
-        this.matchScore = matchScore;
+        this.matchTournamentScore = matchTournamentScore;
         this.goalScore = goalScore;
         this.lostLastMatch = lostLastMatch;
     }
@@ -29,7 +29,7 @@ public class Team {
     }
 
     public int getMatchScore() {
-        return matchScore;
+        return matchTournamentScore;
     }
 
     public int getGoalScore() {
