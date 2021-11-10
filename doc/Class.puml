@@ -32,6 +32,10 @@ abstract Tournament {
 -String tournamentName
 -Team[] teams
 -Match[] matches
++{abstract}winnerTeamNewTotalScore()
++{abstract}loserTeamNewTotalScore()
++{abstract}determineWinnerTeamOutcome()
++{abstract}determineLoserTeamOutcome()
 +{abstract}ArrangeMatches()
 +getTournamentName()
 +getTeam()
@@ -43,7 +47,6 @@ class KnockoutTournament{
 -int winnerTeamMatchScore;
 -int loserTeamMatchScore
 -int goalScore = winnerTeamMatchScore - loserTeamMatchScore;
-
 +winnerTeamNewTotalScore()
 +loserTeamNewTotalScore()
 +determineWinnerTeamOutcome()
