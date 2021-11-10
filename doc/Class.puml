@@ -24,7 +24,8 @@ class Team {
 
 class Match{
 -Team[] teams
-+createMatches()
+-int matchGoalScore;
+-String matchName;
 }
 
 abstract Tournament {
