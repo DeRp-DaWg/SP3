@@ -33,6 +33,13 @@ public class KnockoutTournament extends Tournament {
 
     @Override
     public void ArrangeMatches() {
-
+       Match[] Matches = getMatches();
+       Team[] Teams = getTeams();
+for (int i = 0; i <= getTeams().length / 2; i++) {
+    Team[] tempTeams = new Team[2];
+    tempTeams[i*2] = Teams[i*2];
+    tempTeams[i*2+1] = Teams[i*2+1];
+    Matches[i] = new Match(tempTeams);
+}
     }
 }
