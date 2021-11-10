@@ -38,8 +38,6 @@ abstract Tournament {
 -Match[] matches
 +{abstract}winnerTeamNewTotalScore()
 +{abstract}loserTeamNewTotalScore()
-+{abstract}determineWinnerTeamOutcome()
-+{abstract}determineLoserTeamOutcome()
 +{abstract}ArrangeMatches()
 +getTournamentName()
 +getTeam()
@@ -62,8 +60,6 @@ class GroupTournament{
 -Team[] ScoreBoard
 +winnerTeamNewTotalScore()
 +loserTeamNewTotalScore()
-+determineWinnerTeamOutcome()
-+determineLoserTeamOutcome()
 +ArrangeMatches()
 }
 
