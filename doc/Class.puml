@@ -51,7 +51,6 @@ class KnockoutTournament{
 -int goalScore = winnerTeamMatchScore - loserTeamMatchScore;
 +winnerTeamNewTotalScore()
 +loserTeamNewTotalScore()
-+determineWinnerTeamOutcome()
 +determineLoserTeamOutcome()
 +ArrangeMatches()
 }
