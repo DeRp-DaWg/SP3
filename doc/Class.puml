@@ -12,7 +12,7 @@ class Player {
 
 class Team {
 -String teamName
--int matchScore
+-int matchTournamentScore
 -int goalScore
 -boolean lostLastMatch
 -Player[] players
