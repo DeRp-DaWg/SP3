@@ -12,8 +12,8 @@ class Player {
 
 class Team {
 -String teamName
--int matchTournamentScore
--int goalScore
+-int teamTournamentScore
+-int teamGoalScore
 -boolean lostLastMatch
 -Player[] players
 +setPlayers()
