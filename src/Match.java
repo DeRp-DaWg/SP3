@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Match {
     private Team[] teams;
+    private int matchGoalScore;
+    private String matchName;
 
     ArrayList<String> myMatch = new ArrayList<>();
 
@@ -9,9 +11,4 @@ public class Match {
         this.teams = teams;
     }
 
-    public ArrayList<String> createMatches(Team team){
-        String makeMatch = team + "," + team;
-        myMatch.add(makeMatch);
-        return myMatch;
-    }
 }
