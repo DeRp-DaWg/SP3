@@ -83,10 +83,8 @@ class IO {
 -Scanner sc
 -String teamFileName
 -String matchData
-+addPointsToTeam()
 +readFromFile()
 }
-
 
 UI o-- Tournament
 UI o-- IO
