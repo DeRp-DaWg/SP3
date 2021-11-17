@@ -79,11 +79,11 @@ public class IO {
     }
 
     public void readData() {
-        String[] matches;
-        String[] players;
+        Match[] matches;
         Team[] teams;
         String sql;
         ResultSet rs = null;
+        int lineCount;
 
         String[] field_data = new String[40];
         Connection conn = null;
@@ -101,12 +101,13 @@ public class IO {
             sql = "SELECT * FROM Teams";
             pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = pstmt.executeQuery();
-            int rscount = 0;
+            lineCount = 0;
             while (rs.next()) {
-                rscount++;
+                lineCount++;
             }
-            System.out.println(rscount);
+            teams = new Team[lineCount];
             rs.beforeFirst();
+            int teamCount = 0;
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String teamName = rs.getString("teamName");
@@ -115,24 +116,40 @@ public class IO {
                 Boolean stillInPlay = rs.getBoolean("stillInPlay");
                 System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
                 Team team = new Team(teamName, teamTournamentScore, teamGoalScore, stillInPlay);
+                teams[teamCount] = team;
+                teamCount++;
             }
             System.out.println();
 
             //CREATING PLAYERS
             sql = "SELECT * FROM Players";
-            rs = stmt.executeQuery(sql);
+            pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs = pstmt.executeQuery();
 
+            //lineCount = 0;
+            //while (rs.next()) {
+            //    lineCount++;
+            //}
+            //rs.beforeFirst();
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String playerName = rs.getString("playerName");
                 int teamID = rs.getInt("teamID");
                 System.out.println(ID+", "+playerName+", "+teamID);
+                teams[teamID-1].addPlayer(playerName);
             }
             System.out.println();
             //CREATING MATCHES
             sql = "SELECT * FROM Matches";
-            rs = stmt.executeQuery(sql);
-
+            pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs = pstmt.executeQuery();
+            lineCount = 0;
+            while (rs.next()) {
+                lineCount++;
+            }
+            matches = new Match[lineCount];
+            rs.beforeFirst();
+            int matchCount = 0;
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String matchName = rs.getString("matchName");
@@ -140,6 +157,8 @@ public class IO {
                 int teamTwo = rs.getInt("teamTwo");
                 int score = rs.getInt("score");
                 System.out.println(ID+", "+matchName+", "+teamOne+", "+teamTwo+", "+score);
+                Team[] matchTeams = {teams[teamOne], teams[teamTwo]};
+                matches[ID] = new Match(matchTeams, matchName, score);
             }
         }
         catch(SQLException e) {
