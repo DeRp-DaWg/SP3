@@ -1,9 +1,10 @@
 import java.sql.*;
 
 public class IO {
-
+    //hej
     // database URL
     static final String DB_URL = "jdbc:mysql://localhost/SP3";
+
 
     //  Database credentials
     static final String USER = "root";
