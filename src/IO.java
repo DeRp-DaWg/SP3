@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class IO {
-    //hej
+    //hejj
     // database URL
     static final String DB_URL = "jdbc:mysql://localhost/SP3";
 
