@@ -1,30 +1,25 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Team {
     private String teamName;
-    private ArrayList<Player> players = new ArrayList<Player>();
+    private List<Player> players = new ArrayList<>();
     private int matchTournamentScore = 0;
     private int goalScore = 0;
-    private boolean lostLastMatch = false;
+    private boolean stillInPlay = true;
 
-    public Team(String teamName){
+    public Team(String teamName, int matchTournamentScore, int goalScore, boolean stillInPlay){
         this.teamName = teamName;
         this.matchTournamentScore = matchTournamentScore;
         this.goalScore = goalScore;
-        this.lostLastMatch = lostLastMatch;
-    }
-
-    // Den her metode behøver kun at være her midlertidigt for at gøre det nemmere at teste programmet.
-    // Undgå at bruge den for meget og brug AddPlayer() i stedet.
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
+        this.stillInPlay = stillInPlay;
     }
 
     public String getTeamName() {
         return teamName;
     }
 
-    public ArrayList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
@@ -46,9 +41,10 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "teamName='" + teamName + '\'' +
-                ", players=" + players +
-                '}';
+        String teamString = "";
+        for (Player player: players) {
+            teamString += "Spiller " + player.getPlayerNumber() + " navn: " + player.getName() + ", \n";
+        }
+        return "Team " + teamName + "\n" + teamString;
     }
 }
