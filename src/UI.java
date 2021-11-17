@@ -5,10 +5,13 @@ import java.util.Scanner;
 public class UI {
     private String tournamentType = "";
     private String teamName = "";
+    private int matchTournamentScore = 0;
+    private int goalScore = 0;
+    private boolean stillInPlay = true;
     private Scanner sc;
     private String[] playerNames;
-    private ArrayList<Player> players = new ArrayList<>();
-    private Player player;
+    private ArrayList<String> players = new ArrayList<>();
+    private String player;
     private Team team;
     IO io = new IO();
     Tournament tournament;
@@ -34,7 +37,7 @@ public class UI {
         System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
         playerNames = sc.nextLine().split(",");
 
-        team = new Team(teamName);
+        team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
 
         IO io = new IO();
 
