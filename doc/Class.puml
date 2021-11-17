@@ -16,6 +16,8 @@ class Team {
 -int teamGoalScore
 -boolean lostLastMatch
 -Player[] players
++updateTeamsTournamentScore()
++updateTeamsGoalScore()
 +setPlayers()
 +addPlayer()
 +removePlayer()
@@ -36,8 +38,6 @@ abstract Tournament {
 -String tournamentName
 -Team[] teams
 -Match[] matches
-+{abstract}winnerTeamNewTotalScore()
-+{abstract}loserTeamNewTotalScore()
 +{abstract}ArrangeMatches()
 +getTournamentName()
 +getTeam()
@@ -49,16 +49,12 @@ class KnockoutTournament{
 -int winnerTeamMatchScore;
 -int loserTeamMatchScore
 -int goalScore = winnerTeamMatchScore - loserTeamMatchScore;
-+winnerTeamNewTotalScore()
-+loserTeamNewTotalScore()
 +determineLoserTeamOutcome()
 +ArrangeMatches()
 }
 
 class GroupTournament{
 -Team[] ScoreBoard
-+winnerTeamNewTotalScore()
-+loserTeamNewTotalScore()
 +ArrangeMatches()
 }
 
@@ -71,6 +67,7 @@ class UI {
 -Team team
 +createPlayer()
 +createTeam()
++createMatch()
 +getMatchSchedule()
 +getTeamPlacement()
 +getNextMatch()
@@ -87,7 +84,7 @@ class IO {
 }
 
 UI o-- Tournament
-UI o-- IO
+Main o-- IO
 Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
