@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class Tournament {
     private String tournamentName;
     private Team[] teams;
-    private Match[] matches;
+    private ArrayList <Match> matches;
 
     public Tournament(String tournamentName, Team[] teams) {
         this.tournamentName = tournamentName;
@@ -20,7 +21,7 @@ public abstract class Tournament {
         return teams;
     }
 
-    public Match[] getMatches() {
+    public ArrayList <Match> getMatches() {
         return matches;
     }
 
@@ -29,7 +30,7 @@ public abstract class Tournament {
         return "Tournament{" +
                 "tournamentName='" + tournamentName + '\'' +
                 ", teams=" + Arrays.toString(teams) +
-                ", matches=" + Arrays.toString(matches) +
+                ", matches=" + matches +
                 '}';
     }
 }
