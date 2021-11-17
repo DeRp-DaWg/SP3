@@ -1,70 +1,146 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.sql.*;
 
 public class IO {
-    private String getData = "";
-    private FileWriter writeFile;
-    private File myFile;
-    private Scanner sc;
-    private String fileName;
 
-    public IO(String fileName) throws IOException {
-        this.fileName = fileName;
-        myFile = new File("Resources/"+fileName+".csv");
-        if(!myFile.exists()){
-            myFile.createNewFile();
+    // database URL
+    static final String DB_URL = "jdbc:mysql://localhost/SP3";
+
+    //  Database credentials
+    static final String USER = "root";
+    static final String PASS = "test";
+
+    //Sådan tilføjer man data. Skal ændres senere
+    public void saveData() {
+        Connection conn = null;
+        String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID) "
+                + "VALUES (?,?,?,?)";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, "Hold A");
+            pstmt.setString(3, "Abdi");
+            pstmt.setInt(4, 1);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        writeFile = new FileWriter(fileName);
-        sc = new Scanner(myFile);
-        //while (sc.hasNextLine()){
-        //    getData = sc.nextLine() + getData;
-        //}
     }
 
-    public void addToFile(String teamName, String[] players) throws IOException {
-        writeFile.write(getData + "\n" + teamName + ", " + players);  //TILFØJ MERE
-        writeFile.close();
+    // Tilføj et team
+    public void addTeam(String teamName){
+        Connection conn = null;
+        String sql = "INSERT INTO Teams(teamName, teamTournamentScore, teamGoalScore, stillInPlay) VALUES (?, ?, ?, ?)";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setString(1, teamName);
+            pstmt.setInt(2, 0);
+            pstmt.setInt(3, 0);
+            pstmt.setBoolean(4, true);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void readFromFile() {
-        String[] lines = new String[4];
-        int count = 0;
-        while (sc.hasNextLine()){
-            lines[count] = sc.nextLine();
-            count++;
-        }
-        //for (String line : lines) {
-        //    System.out.println(line);
-        //}
-        String[][] text = new String[lines.length][];
-        for (int i = 0; i < lines.length; i++) {
-            text[i] = lines[i].split(",");
-        }
-        Team[] teams = new Team[4];
-        //Match[] matches = new Match[3];
-        for (int i = 0; i < text.length; i++) {
-            String teamName = text[i][0];
-            String[] teamMembers = text[i][1].split("\\|");
-            String[] matchText = text[i][2].split("\\|");
-            String[][] matches = new String[2][];
-            for (int j = 0; j < matchText.length; j++) {
-                matches[j] = matchText[j].split("\\.");
-            }
-            teams[i] = new Team(teamName);
-            for (String teamMember : teamMembers) {
-                Player player = new Player(teamMember);
-                teams[i].addPlayer(player);
+    // Tilføj players
+    public void addPlayer(String[] playerNames, int foreignKey){
+        Connection conn = null;
+
+        for (String playerName : playerNames) {
+
+            String sql = "INSERT INTO Players(playerName, teamID) VALUES (?, ?)";
+
+            try {
+                conn = DriverManager.getConnection(DB_URL, USER, PASS);
+                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+                pstmt.setString(1, playerName);
+                pstmt.setInt(2, foreignKey);
+
+                pstmt.addBatch();
+                pstmt.executeBatch();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-        //for (int i = 0; i < text.length; i++) {
-        //    Team team = new Team(teamName);
-        //
-        //}
-        //Tournament tournament = new KnockoutTournament(fileName, teams, matches);
-        //return tournament;
+    }
+
+    public void readData() {
+        String[] matches;
+        String[] players;
+        String[] teams;
+        String sql;
+        ResultSet rs = null;
+
+        String[] field_data = new String[40];
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+
+            //CREATING TEAMS
+            sql = "SELECT * FROM Teams";
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+                int ID = rs.getInt("ID");
+                String teamName = rs.getString("teamName");
+                String teamTournamentScore = rs.getString("teamTournamentScore");
+                String teamGoalScore = rs.getString("teamGoalScore");
+                Boolean stillInPlay = rs.getBoolean("stillInPlay");
+                System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
+            }
+            System.out.println();
+            //CREATING PLAYERS
+            sql = "SELECT * FROM Players";
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+                int ID = rs.getInt("ID");
+                String playerName = rs.getString("playerName");
+                int teamID = rs.getInt("teamID");
+                System.out.println(ID+", "+playerName+", "+teamID);
+            }
+            System.out.println();
+            //CREATING MATCHES
+            sql = "SELECT * FROM Matches";
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+                int ID = rs.getInt("ID");
+                String matchName = rs.getString("matchName");
+                int teamOne = rs.getInt("teamOne");
+                int teamTwo = rs.getInt("teamTwo");
+                int score = rs.getInt("score");
+                System.out.println(ID+", "+matchName+", "+teamOne+", "+teamTwo+", "+score);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -1,65 +1,90 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class Player {
-+String playerName
+class Main{
+-UI ui
 }
 
+
 class Team {
-+String teamName
-+Player[] players
-+AddMemberToTeam()
-+RemoveMemberFromTeam()
+-String teamName
+-List<String> players
+-int teamTournamentScore
+-int GoalScore
+-boolean stillInPlay
++addPlayer()
++removePlayer()
++getTeamName()
++getPlayers()
++getMatchScore()
++getGoalScore()
 +String toString()
 }
 
 class Match{
--int {static} IDCounter
-+Team[] teams
-+int matchID
-+addPoints()
-+getPoints()
-+String toString()
+-Team[] teams
+-int matchGoalScore
+-String matchName
++setMatchGoalScore()
++getMatchGoalScore()
++getMatchName()
 }
 
 abstract Tournament {
-+String tournamentName
-+Team[] teams
-+Match[] matches
-+ArrangeMatches()
+-String tournamentName
+-Team[] teams
+-Match[] matches
++{abstract}ArrangeMatches()
++getTournamentName()
++getTeam()
++getMatches()
 +String toString()
 }
 
 class KnockoutTournament{
+-int winnerTeamMatchScore;
+-int loserTeamMatchScore
+-int goalScore = winnerTeamMatchScore - loserTeamMatchScore;
++determineLoserTeamOutcome()
 +ArrangeMatches()
 }
 
 class GroupTournament{
+-Team[] ScoreBoard
 +ArrangeMatches()
 }
 
 class UI {
+-String tournamentType
+-String teamName
+-Scanner sc
+-String[] playerNames
+-Player player
+-Team team
 +createPlayer()
 +createTeam()
++createMatch()
 +getMatchSchedule()
 +getTeamPlacement()
 +getNextMatch()
 }
 
 class IO {
+-String getData
+-FileWriter writeFile
+-File teamFile
+-Scanner sc
+-String teamFileName
+-String matchData
++readFromFile()
 }
 
-class Main{
-}
-
-Main o-- Tournament
+UI o-- Tournament
 Main o-- IO
-Tournament o-- "1" UI
 Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
-Team o-- "2..*" Player
 Tournament <|-- KnockoutTournament
 Tournament <|-- GroupTournament
-
+Main o-- UI
 @enduml

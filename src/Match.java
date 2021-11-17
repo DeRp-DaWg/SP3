@@ -2,28 +2,20 @@ import java.util.ArrayList;
 
 public class Match {
     private Team[] teams;
-    private int points;
+    private String matchName;
+
     ArrayList<String> myMatch = new ArrayList<>();
 
-    public Match(Team[] teams) {
+    public Match(Team[] teams, String matchName) {
         this.teams = teams;
+        this.matchName = matchName;
     }
 
-    public void addPoints() {
-        points++;
+    public Team[] getTeams() {
+        return teams;
     }
 
-    public void addPoints(int amount) {
-        points += amount;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public ArrayList<String> createMatches(Team team){
-        String makeMatch = team + "," + team;
-        myMatch.add(makeMatch);
-        return myMatch;
+    public String getMatchName() {
+        return matchName;
     }
 }

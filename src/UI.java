@@ -1,39 +1,56 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UI {
-    String teamName = "";
-    Scanner sc;
-    String[] playerNames;
-    ArrayList<Player> players = new ArrayList<>();
-    Player player;
-    Team team;
-    IO io = new IO("TournamentTestFile.csv");
+    private String tournamentType = "";
+    private String teamName = "";
+    private int matchTournamentScore = 0;
+    private int goalScore = 0;
+    private boolean stillInPlay = true;
+    private Scanner sc;
+    private String[] playerNames;
+    private ArrayList<String> players = new ArrayList<>();
+    private String player;
+    private Team team;
+    IO io = new IO();
+    Tournament tournament;
+    int countTeams = 1;
 
     public UI() throws IOException {
-        String[] players = {"Rehman", "Jens"};
         createPlayers();
     }
 
-    public void createPlayers(){
+    public void createPlayers() throws IOException {
         sc = new Scanner(System.in);
+
+        //Spørg også om turneringsformanden vil se en oversigt over alle kampene
 
         //Get teamname
         System.out.println("Holdnavn: ");
         teamName = sc.nextLine();
 
+
         //Get players
-        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
+        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans. Skriv done når du er færdig");
+        if(sc.nextLine().toLowerCase() == "done"){
+
+        }
         playerNames = sc.nextLine().split(",");
 
-        team = new Team(teamName);
+        team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
 
-        for (String playerName : playerNames) {
-            player = new Player(playerName);
-            team.addPlayer(player);
-            //io.addToFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
-        }
+        IO io = new IO();
+
+        //io.addPlayer(playerNames, 2);
+        countTeams++;
+
+    }
+
+    public void createTeams() {
+        ArrayList<String> names = new ArrayList<>();
+        System.out.print("Indtast holdets navn: ");
     }
 
     public void announce(){
