@@ -8,7 +8,7 @@ public class IO {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "h20kBp5ka8cVYq";
+    static final String PASS = "test";
 
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
@@ -55,9 +55,12 @@ public class IO {
 
     // Tilføj players
     public void addPlayer(String[] playerNames, int foreignKey){
-        System.out.println(playerNames);
         for (String playerName : playerNames) {
+
+
+            playerName = playerName.replace(" ", "");
             System.out.println(playerName);
+
             Connection conn = null;
             String sql = "INSERT INTO Players(playerName, teamID) VALUES (?, ?)";
 
