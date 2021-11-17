@@ -57,7 +57,6 @@ public class IO {
     public void addPlayer(String[] playerNames, int foreignKey){
         for (String playerName : playerNames) {
 
-
             playerName = playerName.replace(" ", "");
             System.out.println(playerName);
 
