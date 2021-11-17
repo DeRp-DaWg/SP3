@@ -55,9 +55,12 @@ public class IO {
 
     // Tilføj players
     public void addPlayer(String[] playerNames, int foreignKey){
-        System.out.println(playerNames);
         for (String playerName : playerNames) {
+
+
+            playerName = playerName.replace(" ", "");
             System.out.println(playerName);
+
             Connection conn = null;
             String sql = "INSERT INTO Players(playerName, teamID) VALUES (?, ?)";
 
