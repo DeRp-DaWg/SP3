@@ -9,8 +9,8 @@ class Main{
 class Team {
 -String teamName
 -List<String> players
--int teamTournamentScore
--int GoalScore
+-int tournamentScore
+-int goalScore
 -boolean stillInPlay
 +addPlayer()
 +removePlayer()
@@ -23,10 +23,8 @@ class Team {
 
 class Match{
 -Team[] teams
--int matchGoalScore
 -String matchName
-+setMatchGoalScore()
-+getMatchGoalScore()
++getTeams()
 +getMatchName()
 }
 
