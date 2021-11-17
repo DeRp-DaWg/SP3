@@ -34,10 +34,9 @@ public class UI {
             return;
         }
 
-
         //Turneringsformanden
 
-        while (teamName.toLowerCase() != "done"){
+        while (countTeams > 16){
             //Get teamname
             System.out.println("Holdnavn: ");
             teamName = sc.nextLine();

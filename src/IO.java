@@ -184,3 +184,15 @@ public class IO {
         return null;
     }
 }
+
+
+/*
+INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES ("Eighthfinal", 1, 2, 0);
+INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES ("Eighthfinal", 3, 4, 0);
+INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES ("Eighthfinal", 5, 6, 0);
+INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES ("Eighthfinal", 7, 8, 0);
+INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES ("Eighthfinal", 9, 10, 0);
+INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES ("Eighthfinal", 11, 12, 0);
+INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES ("Eighthfinal", 13, 14, 0);
+INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES ("Eighthfinal", 15, 16, 0);
+ */
