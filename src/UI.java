@@ -76,7 +76,7 @@ public class UI {
     public void createTournament() {
         Team[] teams = new Team[2];
         teams[0] = new Team("Test team name");
-        Tournament tournament = new KnockoutTournament("Test tournament name", teams);
+        tournament = new KnockoutTournament("Test tournament name", teams);
     }
 
     public void createTournamentFromDB() {
