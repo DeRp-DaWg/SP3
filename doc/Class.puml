@@ -9,7 +9,7 @@ class Main{
 class Team {
 -String teamName
 -List<String> players
--int tournamentScore
+-int matchTournamentScore
 -int goalScore
 -boolean stillInPlay
 +addPlayer()
