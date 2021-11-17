@@ -3,12 +3,17 @@ import java.util.ArrayList;
 public class Match {
     private Team[] teams;
     private String matchName;
-
-    ArrayList<String> myMatch = new ArrayList<>();
+    private int score;
 
     public Match(Team[] teams, String matchName) {
         this.teams = teams;
         this.matchName = matchName;
+    }
+
+    public Match(Team[] teams, String matchName, int score) {
+        this.teams = teams;
+        this.matchName = matchName;
+        this.score = score;
     }
 
     public Team[] getTeams() {

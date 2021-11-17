@@ -55,26 +55,34 @@ class GroupTournament{
 class UI {
 -String tournamentType
 -String teamName
+-int matchTournamentScore
+-int goalScore
+-boolean stillInPlay
 -Scanner sc
--String[] playerNames
--Player player
+-ArrayList<String> players
+-String player
 -Team team
-+createPlayer()
-+createTeam()
-+createMatch()
+IO io
+Tournament tournament
+int countTeams
++createPlayers()
++createTeams()
++ announce()
+
++createMatches()
 +getMatchSchedule()
 +getTeamPlacement()
 +getNextMatch()
 }
 
 class IO {
--String getData
--FileWriter writeFile
--File teamFile
--Scanner sc
--String teamFileName
--String matchData
-+readFromFile()
+{static}final String DB_URL
+{static}final String USER
+{static}final String PASS
++saveData()
++addTeam(String teamName)
++addPlayer(String[] playerNames, int foreignKey)
++readData()
 }
 
 UI o-- Tournament
