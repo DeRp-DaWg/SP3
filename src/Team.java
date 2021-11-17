@@ -15,6 +15,10 @@ public class Team {
         this.stillInPlay = stillInPlay;
     }
 
+    public Team(String teamName) {
+        this.teamName = teamName;
+    }
+
     public void addPlayer(String player) {
         players.add(player);
     }

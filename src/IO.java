@@ -1,12 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class IO {
-    Match[] matches;
-    Team[] teams;
-
     // database URL
     static final String DB_URL = "jdbc:mysql://localhost/TournamentDB";
 
@@ -93,8 +92,9 @@ public class IO {
         }
     }
 
-    public void readData() {
-
+    public Tournament readData() {
+        Match[] matches;
+        Team[] teams;
         String sql;
         ResultSet rs = null;
         int lineCount;
@@ -169,6 +169,9 @@ public class IO {
                 Team[] matchTeams = {teams[teamOne-1], teams[teamTwo-1]};
                 matches[ID-1] = new Match(matchTeams, matchName, score);
             }
+            ArrayList<Match> matchesAL = new ArrayList<>(Arrays.asList(matches));
+            Tournament tournament = new KnockoutTournament("Tournament Name!", teams, matchesAL);
+            return tournament;
         }
         catch(SQLException e) {
             e.printStackTrace();
@@ -183,13 +186,6 @@ public class IO {
                 e.printStackTrace();
             }
         }
-    }
-
-    public Match[] getMatches() {
-        return matches;
-    }
-
-    public Team[] getTeams() {
-        return teams;
+        return null;
     }
 }
