@@ -46,7 +46,7 @@ public class UI {
             //io.addToNewFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
         }
 
-        io.readFile();
+
     }
 
     public void createTeams() {

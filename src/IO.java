@@ -1,79 +1,54 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.sql.*;
 
 public class IO {
-    private String getData = "";
-    private FileWriter writeFile;
-    private File teamFile;
-    private Scanner sc;
-    private String teamFileName = "teams.txt";
-    private String matchData = "match-data.txt";
 
-    public IO() throws IOException {
-        teamFile = new File("Resources/"+teamFileName);
-        if(!teamFile.exists()){
-            teamFile.createNewFile();
+    // database URL
+    static final String DB_URL = "jdbc:mysql://localhost/SP3";
+
+    //  Database credentials
+    static final String USER = "root";
+    static final String PASS = "test";
+
+    //Sådan tilføjer man data. Skal ændres senere
+    public void saveData() {
+        Connection conn = null;
+        String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID) "
+                + "VALUES (?,?,?,?)";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, "Hold A");
+            pstmt.setString(3, "Abdi");
+            pstmt.setInt(4, 1);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        writeFile = new FileWriter(teamFileName);
-
     }
 
-    public void addToNewFile(String teamName, String[] players) throws IOException {
-        writeFile.write(getData + "\n" + teamName + ", " + players);  //TILFØJ MERE
-        writeFile.close();
+    // Tilføj et team
+    public void addTeam(){
+        Connection conn = null;
+        String sql = "INSERT INTO Teams(teamName, teamTournamentScore, teamGoalScore, stillInPlay) VALUES (?, ?, ?, ?)";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, "Hold A");
+            pstmt.setString(3, "Abdi");
+            pstmt.setInt(4, 1);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
-    //Test
-    public void readFile() throws FileNotFoundException {
-        sc = new Scanner(teamFile);
-        while (sc.hasNextLine()){
-            getData = sc.nextLine() + getData;
-        }
-        System.out.println("\n" + getData);
-    }
-
-    /*
-    public void readFromFile() {
-        String[] lines = new String[4];
-        int count = 0;
-        while (sc.hasNextLine()){
-            lines[count] = sc.nextLine();
-            count++;
-        }
-        //for (String line : lines) {
-        //    System.out.println(line);
-        //}
-        String[][] text = new String[lines.length][];
-        for (int i = 0; i < lines.length; i++) {
-            text[i] = lines[i].split(",");
-        }
-        Team[] teams = new Team[4];
-        //Match[] matches = new Match[3];
-        for (int i = 0; i < text.length; i++) {
-            String teamName = text[i][0];
-            String[] teamMembers = text[i][1].split("\\|");
-            String[] matchText = text[i][2].split("\\|");
-            String[][] matches = new String[2][];
-            for (int j = 0; j < matchText.length; j++) {
-                matches[j] = matchText[j].split("\\.");
-            }
-
-            //teams[i] = new Team(teamName);
-            for (String teamMember : teamMembers) {
-                Player player = new Player(teamMember);
-                teams[i].addPlayer(player);
-            }
-        }
-        //for (int i = 0; i < text.length; i++) {
-        //    Team team = new Team(teamName);
-        //
-        //}
-        //Tournament tournament = new KnockoutTournament(fileName, teams, matches);
-        //return tournament;
-    }*/
-
 }
