@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class KnockoutTournament extends Tournament {
-    ArrayList<Match> Matches = getMatches();
+    private ArrayList <Match> Matches;
+    //ArrayList<Match> Matches = getMatches();
     Team[] Teams = getTeams();
 
     public KnockoutTournament(String tournamentName, Team[] teams) {
