@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class KnockoutTournament extends Tournament {
-    ArrayList<Match> Matches = getMatches();
-    Team[] Teams = getTeams();
+    ArrayList<Match> matches = getMatches();
+    Team[] teams = getTeams();
 
     public KnockoutTournament(String tournamentName, Team[] teams) {
         super(tournamentName, teams);
@@ -10,7 +10,7 @@ public class KnockoutTournament extends Tournament {
 
     public KnockoutTournament(String tournamentName, Team[] teams, ArrayList<Match> matches) {
         super(tournamentName, teams);
-        Matches = matches;
+        matches = matches;
     }
 
     // For use in determineWinnerTeamOutcome() method
@@ -27,26 +27,34 @@ public class KnockoutTournament extends Tournament {
     public void determineWinnerTeamOutcome(int team1number, int team2number, boolean team1Won, int team1CurrentScore, int team2CurrentScore) {
         if (team1Won) {
             winnerTeamNewTotalScore(team1CurrentScore);
-            Matches.remove(team2number);
+            matches.remove(team2number);
         } else {
             winnerTeamNewTotalScore(team2CurrentScore);
-            Matches.remove(team1number);
+            matches.remove(team1number);
         }
     }
 
     public void determineLoserTeamOutcome(int team1number, int team2number, boolean team2Lost, int team1GoalScore, int team2GoalScore) {
         if (team2Lost) {
             loserTeamGoalScore(team1GoalScore, team2GoalScore);
-            Matches.remove(team2number);
+            matches.remove(team2number);
         } else {
             loserTeamGoalScore(team2GoalScore, team1GoalScore);
-            Matches.remove(team1number);
+            matches.remove(team1number);
         }
     }
 
     @Override
     public void ArrangeMatches() {
-        //for (int i = 0; i < teams.length; )
+        String[] matchNames = {"Eight-finals", "Quarterfinals", "Semifinals", "Final"};
+        int matchCount = 8;
+        while (matchCount != 1) {
+            for (int i = 0; i < matchCount; i++) {
+                Match match = new Match(matchNames[i]);
+                //matches.add();
+            }
+            matchCount /= 2;
+        }
 
         //for (int i = 0; i <= getTeams().length / 2; i++) {
         //    Team[] tempTeams = new Team[2];
