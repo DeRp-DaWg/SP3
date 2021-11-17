@@ -45,7 +45,7 @@ for (int i = 0; i <= getTeams().length / 2; i++) {
     Team[] tempTeams = new Team[2];
     tempTeams[i*2] = Teams[i*2];
     tempTeams[i*2+1] = Teams[i*2+1];
-    Match tempMatch = new Match(tempTeams);
+    Match tempMatch = new Match(tempTeams, "tempMatch");
     Matches.set(i, tempMatch);
 }
     }
