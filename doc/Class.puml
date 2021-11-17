@@ -33,7 +33,7 @@ class Match{
 abstract Tournament {
 -String tournamentName
 -Team[] teams
--Match[] matches
+-ArrayList <Matches>
 +{abstract}ArrangeMatches()
 +getTournamentName()
 +getTeam()
