@@ -10,7 +10,6 @@ public class UI {
     private int goalScore = 0;
     private boolean stillInPlay = true;
     private Scanner sc;
-    private String[] playerNames;
     private ArrayList<String> players = new ArrayList<>();
     private String player;
     private Team team;
@@ -37,16 +36,16 @@ public class UI {
         if(sc.nextLine().toLowerCase() == "done"){
 
         }
-        playerNames = sc.nextLine().split(",");
+        String getPlayerNames = sc.nextLine();
+        String[] splitPlayerNames = getPlayerNames.split(",");
 
         team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
 
         IO io = new IO();
 
         io.addTeam(teamName);
-        io.addPlayer(playerNames, countTeams);
+        io.addPlayer(splitPlayerNames, countTeams);
         countTeams++;
-
     }
 
     public void createTeams() {

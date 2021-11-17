@@ -55,6 +55,7 @@ public class IO {
 
     // Tilføj players
     public void addPlayer(String[] playerNames, int foreignKey){
+        System.out.println(playerNames);
         for (String playerName : playerNames) {
             System.out.println(playerName);
             Connection conn = null;
