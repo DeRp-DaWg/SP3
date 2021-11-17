@@ -51,4 +51,73 @@ public class IO {
             e.printStackTrace();
         }
     }
+
+    public void readData() {
+        String[] matches;
+        String[] players;
+        String[] teams;
+        String sql;
+        ResultSet rs = null;
+
+        String[] field_data = new String[40];
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+
+            //CREATING TEAMS
+            sql = "SELECT * FROM Teams";
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+                int ID = rs.getInt("ID");
+                String teamName = rs.getString("teamName");
+                String teamTournamentScore = rs.getString("teamTournamentScore");
+                String teamGoalScore = rs.getString("teamGoalScore");
+                Boolean stillInPlay = rs.getBoolean("stillInPlay");
+                System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
+            }
+            System.out.println();
+            //CREATING PLAYERS
+            sql = "SELECT * FROM Players";
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+                int ID = rs.getInt("ID");
+                String playerName = rs.getString("playerName");
+                int teamID = rs.getInt("teamID");
+                System.out.println(ID+", "+playerName+", "+teamID);
+            }
+            System.out.println();
+            //CREATING MATCHES
+            sql = "SELECT * FROM Matches";
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+                int ID = rs.getInt("ID");
+                String matchName = rs.getString("matchName");
+                int teamOne = rs.getInt("teamOne");
+                int teamTwo = rs.getInt("teamTwo");
+                int score = rs.getInt("score");
+                System.out.println(ID+", "+matchName+", "+teamOne+", "+teamTwo+", "+score);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
