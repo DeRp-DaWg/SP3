@@ -139,12 +139,6 @@ public class IO {
             sql = "SELECT * FROM Players";
             pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = pstmt.executeQuery();
-
-            //lineCount = 0;
-            //while (rs.next()) {
-            //    lineCount++;
-            //}
-            //rs.beforeFirst();
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String playerName = rs.getString("playerName");
@@ -153,6 +147,7 @@ public class IO {
                 teams[teamID-1].addPlayer(playerName);
             }
             System.out.println();
+
             //CREATING MATCHES
             sql = "SELECT * FROM Matches";
             pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
