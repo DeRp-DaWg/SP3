@@ -12,7 +12,7 @@ public class IO {
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
         Connection conn = null;
-        String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID)"
+        String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID) "
                 + "VALUES (?,?,?,?)";
 
         try {
@@ -95,18 +95,16 @@ public class IO {
             //CREATING TEAMS
             sql = "SELECT * FROM Teams";
             rs = stmt.executeQuery(sql);
+
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String teamName = rs.getString("teamName");
-                int teamTournamentScore = rs.getInt("teamTournamentScore");
-                int teamGoalScore = rs.getInt("teamGoalScore");
+                String teamTournamentScore = rs.getString("teamTournamentScore");
+                String teamGoalScore = rs.getString("teamGoalScore");
                 Boolean stillInPlay = rs.getBoolean("stillInPlay");
                 System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
-                Team team = new Team(teamName, teamTournamentScore, teamGoalScore, stillInPlay);
-
             }
             System.out.println();
-
             //CREATING PLAYERS
             sql = "SELECT * FROM Players";
             rs = stmt.executeQuery(sql);

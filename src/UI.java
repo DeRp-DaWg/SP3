@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UI {
@@ -32,7 +33,10 @@ public class UI {
 
 
         //Get players
-        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
+        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans. Skriv done når du er færdig");
+        if(sc.nextLine().toLowerCase() == "done"){
+
+        }
         playerNames = sc.nextLine().split(",");
 
         team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
@@ -41,7 +45,6 @@ public class UI {
 
         //io.addPlayer(playerNames, 2);
         countTeams++;
-
 
     }
 
