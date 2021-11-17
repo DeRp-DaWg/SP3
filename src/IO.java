@@ -52,6 +52,29 @@ public class IO {
         }
     }
 
+    // Tilføj players
+    public void addPlayer(String[] playerNames, int foreignKey){
+        Connection conn = null;
+
+        for (String playerName : playerNames) {
+
+            String sql = "INSERT INTO Players(playerName, teamID) VALUES (?, ?)";
+
+            try {
+                conn = DriverManager.getConnection(DB_URL, USER, PASS);
+                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+                pstmt.setString(1, playerName);
+                pstmt.setInt(2, foreignKey);
+
+                pstmt.addBatch();
+                pstmt.executeBatch();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void readData() {
         String[] matches;
         String[] players;
@@ -72,16 +95,18 @@ public class IO {
             //CREATING TEAMS
             sql = "SELECT * FROM Teams";
             rs = stmt.executeQuery(sql);
-
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String teamName = rs.getString("teamName");
-                String teamTournamentScore = rs.getString("teamTournamentScore");
-                String teamGoalScore = rs.getString("teamGoalScore");
+                int teamTournamentScore = rs.getInt("teamTournamentScore");
+                int teamGoalScore = rs.getInt("teamGoalScore");
                 Boolean stillInPlay = rs.getBoolean("stillInPlay");
                 System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
+                Team team = new Team(teamName, teamTournamentScore, teamGoalScore, stillInPlay);
+
             }
             System.out.println();
+
             //CREATING PLAYERS
             sql = "SELECT * FROM Players";
             rs = stmt.executeQuery(sql);
