@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -25,9 +26,17 @@ public class UI {
     public void createPlayers() throws IOException {
         sc = new Scanner(System.in);
 
+        System.out.println("Tast k for at se kamptider eller o for at oprette en ny turnering: ");
+        String chooseOption = sc.nextLine();
+
+        if(chooseOption.equals("k")){
+            System.out.println("Vis data");
+            return;
+        }
+
         //Turneringsformanden
 
-        while (teamName.toLowerCase() != "done"){
+        while (countTeams < 17){
             //Get teamname
             System.out.println("Holdnavn: ");
             teamName = sc.nextLine();
@@ -43,7 +52,6 @@ public class UI {
             String[] splitPlayerNames = getPlayerNames.split(",");
 
             team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
-            IO io = new IO();
 
             io.addTeam(teamName);
             io.addPlayer(splitPlayerNames, countTeams);
@@ -54,12 +62,13 @@ public class UI {
 
     }
 
-    public void createTeams() {
-        ArrayList<String> names = new ArrayList<>();
-        System.out.print("Indtast holdets navn: ");
+    public void createTournament() {
+        Team[] teams = new Team[2];
+        teams[0] = new Team("Test team name");
+        tournament = new KnockoutTournament("Test tournament name", teams);
     }
 
-    public void announce(){
-
+    public void createTournamentFromDB() {
+        tournament = io.readData();
     }
 }

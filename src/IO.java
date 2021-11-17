@@ -1,14 +1,28 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class IO {
-    //hejju
     // database URL
     static final String DB_URL = "jdbc:mysql://localhost/TournamentDB";
 
-
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "test";
+    static String PASS;
+
+    public IO() {
+        try {
+            File passwordFile = new File("password.txt");
+            Scanner passwordReader = new Scanner(passwordFile);
+            PASS = passwordReader.nextLine();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
@@ -78,7 +92,7 @@ public class IO {
         }
     }
 
-    public void readData() {
+    public Tournament readData() {
         Match[] matches;
         Team[] teams;
         String sql;
@@ -114,31 +128,22 @@ public class IO {
                 int teamTournamentScore = rs.getInt("teamTournamentScore");
                 int teamGoalScore = rs.getInt("teamGoalScore");
                 Boolean stillInPlay = rs.getBoolean("stillInPlay");
-                System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
                 Team team = new Team(teamName, teamTournamentScore, teamGoalScore, stillInPlay);
                 teams[teamCount] = team;
                 teamCount++;
             }
-            System.out.println();
 
             //CREATING PLAYERS
             sql = "SELECT * FROM Players";
             pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = pstmt.executeQuery();
-
-            //lineCount = 0;
-            //while (rs.next()) {
-            //    lineCount++;
-            //}
-            //rs.beforeFirst();
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String playerName = rs.getString("playerName");
                 int teamID = rs.getInt("teamID");
-                System.out.println(ID+", "+playerName+", "+teamID);
                 teams[teamID-1].addPlayer(playerName);
             }
-            System.out.println();
+
             //CREATING MATCHES
             sql = "SELECT * FROM Matches";
             pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -156,10 +161,12 @@ public class IO {
                 int teamOne = rs.getInt("teamOne");
                 int teamTwo = rs.getInt("teamTwo");
                 int score = rs.getInt("score");
-                System.out.println(ID+", "+matchName+", "+teamOne+", "+teamTwo+", "+score);
-                Team[] matchTeams = {teams[teamOne], teams[teamTwo]};
-                matches[ID] = new Match(matchTeams, matchName, score);
+                Team[] matchTeams = {teams[teamOne-1], teams[teamTwo-1]};
+                matches[ID-1] = new Match(matchTeams, matchName, score);
             }
+            ArrayList<Match> matchesAL = new ArrayList<>(Arrays.asList(matches));
+            Tournament tournament = new KnockoutTournament("Tournament Name!", teams, matchesAL);
+            return tournament;
         }
         catch(SQLException e) {
             e.printStackTrace();
@@ -174,5 +181,6 @@ public class IO {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 }
