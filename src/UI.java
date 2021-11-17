@@ -32,17 +32,21 @@ public class UI {
 
 
         //Get players
-        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans. Skriv done når du er færdig");
+        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans.");
         String getPlayerNames = sc.nextLine();
         String[] splitPlayerNames = getPlayerNames.split(",");
 
         team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
-
         IO io = new IO();
 
-        io.addTeam(teamName);
-        io.addPlayer(splitPlayerNames, countTeams);
-        countTeams++;
+
+
+            io.addTeam(teamName);
+            io.addPlayer(splitPlayerNames, countTeams);
+            countTeams++;
+
+            System.out.println("Tilføj et til hold eller skriv done hvis du er færdig");
+
     }
 
     public void createTeams() {
