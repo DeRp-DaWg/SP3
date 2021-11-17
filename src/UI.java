@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -59,7 +60,19 @@ public class UI {
         System.out.print("Indtast holdets navn: ");
     }
 
-    public void announce(){
+    public void announce() {
 
+    }
+
+    public void createTournament() {
+
+    }
+
+    public void createTournamentFromDB() {
+        io.readData();
+        Match[] m = io.getMatches();
+        ArrayList<Match> matches = new ArrayList<>(Arrays.asList(m));
+        Team[] teams = io.getTeams();
+        Tournament tournament = new KnockoutTournament("Tournament Name!", teams, matches);
     }
 }

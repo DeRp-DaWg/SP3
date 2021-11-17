@@ -4,10 +4,11 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class IO {
-    //hejju
+    Match[] matches;
+    Team[] teams;
+
     // database URL
     static final String DB_URL = "jdbc:mysql://localhost/TournamentDB";
-
 
     //  Database credentials
     static final String USER = "root";
@@ -93,8 +94,7 @@ public class IO {
     }
 
     public void readData() {
-        Match[] matches;
-        Team[] teams;
+
         String sql;
         ResultSet rs = null;
         int lineCount;
@@ -183,5 +183,13 @@ public class IO {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Match[] getMatches() {
+        return matches;
+    }
+
+    public Team[] getTeams() {
+        return teams;
     }
 }

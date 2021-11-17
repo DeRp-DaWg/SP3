@@ -8,6 +8,11 @@ public class KnockoutTournament extends Tournament {
         super(tournamentName, teams);
     }
 
+    public KnockoutTournament(String tournamentName, Team[] teams, ArrayList<Match> matches) {
+        super(tournamentName, teams);
+        Matches = matches;
+    }
+
     // For use in determineWinnerTeamOutcome() method
     public int winnerTeamNewTotalScore(int winnerTeamCurrentScore) {
         return winnerTeamCurrentScore + 2;
