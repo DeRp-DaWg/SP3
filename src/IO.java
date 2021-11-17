@@ -8,7 +8,7 @@ public class IO {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "test";
+    static final String PASS = "h20kBp5ka8cVYq";
 
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
@@ -79,13 +79,15 @@ public class IO {
     public void readData() {
         String[] matches;
         String[] players;
-        String[] teams;
+        Team[] teams;
         String sql;
         ResultSet rs = null;
 
         String[] field_data = new String[40];
         Connection conn = null;
         Statement stmt = null;
+        PreparedStatement pstmt = null;
+
         try {
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -95,7 +97,14 @@ public class IO {
 
             //CREATING TEAMS
             sql = "SELECT * FROM Teams";
-            rs = stmt.executeQuery(sql);
+            pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs = pstmt.executeQuery();
+            int rscount = 0;
+            while (rs.next()) {
+                rscount++;
+            }
+            System.out.println(rscount);
+            rs.beforeFirst();
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String teamName = rs.getString("teamName");
@@ -104,7 +113,6 @@ public class IO {
                 Boolean stillInPlay = rs.getBoolean("stillInPlay");
                 System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
                 Team team = new Team(teamName, teamTournamentScore, teamGoalScore, stillInPlay);
-
             }
             System.out.println();
 
