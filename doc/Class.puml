@@ -87,7 +87,7 @@ class IO {
 }
 
 UI o-- Tournament
-UI o-- IO
+Main o-- IO
 Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
