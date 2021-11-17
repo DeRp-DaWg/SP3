@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.Scanner;
 
 public class IO {
     //hejju
@@ -8,7 +11,18 @@ public class IO {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "test";
+    static String PASS;
+
+    public IO() {
+        try {
+            File passwordFile = new File("password.txt");
+            Scanner passwordReader = new Scanner(passwordFile);
+            PASS = passwordReader.nextLine();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
@@ -157,8 +171,8 @@ public class IO {
                 int teamTwo = rs.getInt("teamTwo");
                 int score = rs.getInt("score");
                 System.out.println(ID+", "+matchName+", "+teamOne+", "+teamTwo+", "+score);
-                Team[] matchTeams = {teams[teamOne], teams[teamTwo]};
-                matches[ID] = new Match(matchTeams, matchName, score);
+                Team[] matchTeams = {teams[teamOne-1], teams[teamTwo-1]};
+                matches[ID-1] = new Match(matchTeams, matchName, score);
             }
         }
         catch(SQLException e) {
