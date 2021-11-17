@@ -42,8 +42,7 @@ public class UI {
         IO io = new IO();
 
         for (String playerName : playerNames) {
-            player = new Player(playerName);
-            team.addPlayer(player);
+            team.addPlayer(playerName);
             //io.addToNewFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
         }
 
