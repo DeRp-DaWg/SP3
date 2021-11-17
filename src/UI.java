@@ -62,15 +62,6 @@ public class UI {
 
     }
 
-    public void createTeams() {
-        ArrayList<String> names = new ArrayList<>();
-        System.out.print("Indtast holdets navn: ");
-    }
-
-    public void announce() {
-
-    }
-
     public void createTournament() {
         Team[] teams = new Team[2];
         teams[0] = new Team("Test team name");
