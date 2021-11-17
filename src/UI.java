@@ -53,7 +53,6 @@ public class UI {
             String[] splitPlayerNames = getPlayerNames.split(",");
 
             team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
-            IO io = new IO();
 
             io.addTeam(teamName);
             io.addPlayer(splitPlayerNames, countTeams);
