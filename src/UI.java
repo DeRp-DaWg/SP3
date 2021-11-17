@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class UI {
     private String tournamentType = "";
     private String teamName = "";
+    private String getPlayerNames = "";
     private int matchTournamentScore = 0;
     private int goalScore = 0;
     private boolean stillInPlay = true;
@@ -24,28 +25,32 @@ public class UI {
     public void createPlayers() throws IOException {
         sc = new Scanner(System.in);
 
-        //Spørg også om turneringsformanden vil se en oversigt over alle kampene
+        //Turneringsformanden
 
-        //Get teamname
-        System.out.println("Holdnavn: ");
-        teamName = sc.nextLine();
+        while (teamName.toLowerCase() != "done"){
+            //Get teamname
+            System.out.println("Holdnavn: ");
+            teamName = sc.nextLine();
 
+            if(teamName.toLowerCase().equals("done")){
+                System.out.println("\nDine hold er gemt!");
+                break;
+            }
 
-        //Get players
-        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans.");
-        String getPlayerNames = sc.nextLine();
-        String[] splitPlayerNames = getPlayerNames.split(",");
+            //Get players
+            System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans.");
+            getPlayerNames = sc.nextLine();
+            String[] splitPlayerNames = getPlayerNames.split(",");
 
-        team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
-        IO io = new IO();
-
-
+            team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
+            IO io = new IO();
 
             io.addTeam(teamName);
             io.addPlayer(splitPlayerNames, countTeams);
             countTeams++;
 
-            System.out.println("Tilføj et til hold eller skriv done hvis du er færdig");
+            System.out.println("\nTilføj et til hold eller skriv done hvis du er færdig\n");
+        }
 
     }
 
