@@ -26,6 +26,15 @@ public class UI {
     public void createPlayers() throws IOException {
         sc = new Scanner(System.in);
 
+        System.out.println("Tast k for at se kamptider eller o for at oprette en ny turnering: ");
+        String chooseOption = sc.nextLine();
+
+        if(chooseOption.equals("k")){
+            System.out.println("Vis data");
+            return;
+        }
+
+
         //Turneringsformanden
 
         while (teamName.toLowerCase() != "done"){
