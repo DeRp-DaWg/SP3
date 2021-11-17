@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class KnockoutTournament extends Tournament {
-    ArrayList<Match> Matches = getMatches();
+    private ArrayList <Match> Matches;
+    //ArrayList<Match> Matches = getMatches();
     Team[] Teams = getTeams();
 
     public KnockoutTournament(String tournamentName, Team[] teams) {
@@ -19,6 +21,7 @@ public class KnockoutTournament extends Tournament {
         return goalScore;
     }
 
+    // team1/2number = teamets plads i Matches arraylisten
     public void determineWinnerTeamOutcome(int team1number, int team2number, boolean team1Won, int team1CurrentScore, int team2CurrentScore) {
         if (team1Won) {
             winnerTeamNewTotalScore(team1CurrentScore);
@@ -29,6 +32,7 @@ public class KnockoutTournament extends Tournament {
         }
     }
 
+    // team1/2number = teamets plads i Matches arraylisten.
     public void determineLoserTeamOutcome(int team1number, int team2number, boolean team2Lost, int team1GoalScore, int team2GoalScore) {
         if (team2Lost) {
             loserTeamGoalScore(team1GoalScore,team2GoalScore);
@@ -48,5 +52,13 @@ for (int i = 0; i <= getTeams().length / 2; i++) {
     Match tempMatch = new Match(tempTeams, "tempMatch");
     Matches.set(i, tempMatch);
 }
+    }
+
+    @Override
+    public String toString() {
+        return "KnockoutTournament{" +
+                "Matches=" + Matches +
+                ", Teams=" + Arrays.toString(Teams) +
+                '}';
     }
 }

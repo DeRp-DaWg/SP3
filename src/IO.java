@@ -1,9 +1,10 @@
 import java.sql.*;
 
 public class IO {
-
+    //hejju
     // database URL
-    static final String DB_URL = "jdbc:mysql://localhost/SP3";
+    static final String DB_URL = "jdbc:mysql://localhost/TournamentDB";
+
 
     //  Database credentials
     static final String USER = "root";
@@ -12,7 +13,7 @@ public class IO {
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
         Connection conn = null;
-        String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID) "
+        String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID)"
                 + "VALUES (?,?,?,?)";
 
         try {
@@ -54,10 +55,9 @@ public class IO {
 
     // Tilføj players
     public void addPlayer(String[] playerNames, int foreignKey){
-        Connection conn = null;
-
         for (String playerName : playerNames) {
-
+            System.out.println(playerName);
+            Connection conn = null;
             String sql = "INSERT INTO Players(playerName, teamID) VALUES (?, ?)";
 
             try {
@@ -95,16 +95,18 @@ public class IO {
             //CREATING TEAMS
             sql = "SELECT * FROM Teams";
             rs = stmt.executeQuery(sql);
-
             while(rs.next()) {
                 int ID = rs.getInt("ID");
                 String teamName = rs.getString("teamName");
-                String teamTournamentScore = rs.getString("teamTournamentScore");
-                String teamGoalScore = rs.getString("teamGoalScore");
+                int teamTournamentScore = rs.getInt("teamTournamentScore");
+                int teamGoalScore = rs.getInt("teamGoalScore");
                 Boolean stillInPlay = rs.getBoolean("stillInPlay");
                 System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
+                Team team = new Team(teamName, teamTournamentScore, teamGoalScore, stillInPlay);
+
             }
             System.out.println();
+
             //CREATING PLAYERS
             sql = "SELECT * FROM Players";
             rs = stmt.executeQuery(sql);

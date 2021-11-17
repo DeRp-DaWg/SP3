@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UI {
@@ -15,6 +16,7 @@ public class UI {
     private Team team;
     IO io = new IO();
     Tournament tournament;
+    int countTeams = 1;
 
     public UI() throws IOException {
         createPlayers();
@@ -25,27 +27,25 @@ public class UI {
 
         //Spørg også om turneringsformanden vil se en oversigt over alle kampene
 
-        //Vælg turneringstype
-        System.out.println("Tryk k for knockout-turnering, eller g for gruppeturnering: ");
-        tournamentType = sc.nextLine();
-
         //Get teamname
         System.out.println("Holdnavn: ");
         teamName = sc.nextLine();
 
+
         //Get players
-        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
+        System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans. Skriv done når du er færdig");
+        if(sc.nextLine().toLowerCase() == "done"){
+
+        }
         playerNames = sc.nextLine().split(",");
 
         team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
 
         IO io = new IO();
 
-        for (String playerName : playerNames) {
-            team.addPlayer(playerName);
-            //io.addToNewFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
-        }
-
+        io.addTeam(teamName);
+        io.addPlayer(playerNames, countTeams);
+        countTeams++;
 
     }
 
