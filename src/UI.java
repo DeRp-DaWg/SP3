@@ -33,9 +33,6 @@ public class UI {
 
         //Get players
         System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans. Skriv done når du er færdig");
-        if(sc.nextLine().toLowerCase() == "done"){
-
-        }
         String getPlayerNames = sc.nextLine();
         String[] splitPlayerNames = getPlayerNames.split(",");
 
