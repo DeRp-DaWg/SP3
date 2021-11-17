@@ -3,7 +3,7 @@ import java.sql.*;
 public class IO {
     //hejju
     // database URL
-    static final String DB_URL = "jdbc:mysql://localhost/SP3";
+    static final String DB_URL = "jdbc:mysql://localhost/TournamentDB";
 
 
     //  Database credentials
@@ -55,10 +55,9 @@ public class IO {
 
     // Tilføj players
     public void addPlayer(String[] playerNames, int foreignKey){
-        Connection conn = null;
-
         for (String playerName : playerNames) {
-
+            System.out.println(playerName);
+            Connection conn = null;
             String sql = "INSERT INTO Players(playerName, teamID) VALUES (?, ?)";
 
             try {
