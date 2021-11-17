@@ -10,7 +10,6 @@ public class DBConnector {
     static final String USER = "root";
     static final String PASS = "test";
 
-
     public String[] readFieldData() {
         String[] field_data = new String[40];
         Connection conn = null;
