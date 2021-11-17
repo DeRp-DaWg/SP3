@@ -15,6 +15,14 @@ public class Team {
         this.stillInPlay = stillInPlay;
     }
 
+    public void addPlayer(String player) {
+        players.add(player);
+    }
+
+    public void removePlayer(int playerNr) {
+        this.players.remove(playerNr - 1);
+    }
+
     public String getTeamName() {
         return teamName;
     }
@@ -29,14 +37,6 @@ public class Team {
 
     public int getGoalScore() {
         return goalScore;
-    }
-
-    public void addPlayer(String player) {
-        players.add(player);
-    }
-
-    public void removePlayer(int playerNr) {
-        this.players.remove(playerNr - 1);
     }
 
     @Override

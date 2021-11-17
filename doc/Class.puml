@@ -5,22 +5,19 @@ class Main{
 -UI ui
 }
 
-class Player {
--String playerName
-+String getName()
-}
 
 class Team {
 -String teamName
+-List<String> players
 -int teamTournamentScore
--int teamGoalScore
--boolean lostLastMatch
--Player[] players
-+updateTeamsTournamentScore()
-+updateTeamsGoalScore()
-+setPlayers()
+-int GoalScore
+-boolean stillInPlay
 +addPlayer()
 +removePlayer()
++getTeamName()
++getPlayers()
++getMatchScore()
++getGoalScore()
 +String toString()
 }
 
@@ -28,7 +25,6 @@ class Match{
 -Team[] teams
 -int matchGoalScore
 -String matchName
-
 +setMatchGoalScore()
 +getMatchGoalScore()
 +getMatchName()
@@ -88,7 +84,6 @@ Main o-- IO
 Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
-Team o-- "2..*" Player
 Tournament <|-- KnockoutTournament
 Tournament <|-- GroupTournament
 Main o-- UI
