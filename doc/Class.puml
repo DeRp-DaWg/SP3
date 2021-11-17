@@ -55,13 +55,21 @@ class GroupTournament{
 class UI {
 -String tournamentType
 -String teamName
+-int matchTournamentScore
+-int goalScore
+-boolean stillInPlay
 -Scanner sc
--String[] playerNames
--Player player
+-ArrayList<String> players
+-String player
 -Team team
-+createPlayer()
-+createTeam()
-+createMatch()
+IO io
+Tournament tournament
+int countTeams
++createPlayers()
++createTeams()
++ announce()
+
++createMatches()
 +getMatchSchedule()
 +getTeamPlacement()
 +getNextMatch()
