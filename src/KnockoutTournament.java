@@ -31,7 +31,7 @@ public class KnockoutTournament extends Tournament {
         }
     }
 
-    // team1/2number = teamets plads i Matches arraylisten
+    // team1/2number = teamets plads i Matches arraylisten.
     public void determineLoserTeamOutcome(int team1number, int team2number, boolean team2Lost, int team1GoalScore, int team2GoalScore) {
         if (team2Lost) {
             loserTeamGoalScore(team1GoalScore,team2GoalScore);
