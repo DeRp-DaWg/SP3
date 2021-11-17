@@ -128,12 +128,10 @@ public class IO {
                 int teamTournamentScore = rs.getInt("teamTournamentScore");
                 int teamGoalScore = rs.getInt("teamGoalScore");
                 Boolean stillInPlay = rs.getBoolean("stillInPlay");
-                System.out.println(ID+", "+teamName+", "+teamTournamentScore+", "+teamGoalScore+", "+stillInPlay);
                 Team team = new Team(teamName, teamTournamentScore, teamGoalScore, stillInPlay);
                 teams[teamCount] = team;
                 teamCount++;
             }
-            System.out.println();
 
             //CREATING PLAYERS
             sql = "SELECT * FROM Players";
@@ -143,10 +141,8 @@ public class IO {
                 int ID = rs.getInt("ID");
                 String playerName = rs.getString("playerName");
                 int teamID = rs.getInt("teamID");
-                System.out.println(ID+", "+playerName+", "+teamID);
                 teams[teamID-1].addPlayer(playerName);
             }
-            System.out.println();
 
             //CREATING MATCHES
             sql = "SELECT * FROM Matches";
@@ -165,7 +161,6 @@ public class IO {
                 int teamOne = rs.getInt("teamOne");
                 int teamTwo = rs.getInt("teamTwo");
                 int score = rs.getInt("score");
-                System.out.println(ID+", "+matchName+", "+teamOne+", "+teamTwo+", "+score);
                 Team[] matchTeams = {teams[teamOne-1], teams[teamTwo-1]};
                 matches[ID-1] = new Match(matchTeams, matchName, score);
             }
