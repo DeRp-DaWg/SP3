@@ -36,7 +36,7 @@ public class UI {
 
         //Turneringsformanden
 
-        while (countTeams > 16){
+        while (countTeams < 17){
             //Get teamname
             System.out.println("Holdnavn: ");
             teamName = sc.nextLine();
