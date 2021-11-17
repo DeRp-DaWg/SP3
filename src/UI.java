@@ -15,6 +15,7 @@ public class UI {
     private Team team;
     IO io = new IO();
     Tournament tournament;
+    int countTeams = 1;
 
     public UI() throws IOException {
         createPlayers();
@@ -25,13 +26,10 @@ public class UI {
 
         //Spørg også om turneringsformanden vil se en oversigt over alle kampene
 
-        //Vælg turneringstype
-        System.out.println("Tryk k for knockout-turnering, eller g for gruppeturnering: ");
-        tournamentType = sc.nextLine();
-
         //Get teamname
         System.out.println("Holdnavn: ");
         teamName = sc.nextLine();
+
 
         //Get players
         System.out.println("Indtast spillernavne separeret af et komma, fx Ole, Abdi, Hans:");
@@ -40,7 +38,9 @@ public class UI {
         team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
 
         IO io = new IO();
+
         //io.addPlayer(playerNames, 2);
+        countTeams++;
 
 
     }

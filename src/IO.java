@@ -12,7 +12,7 @@ public class IO {
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
         Connection conn = null;
-        String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID) "
+        String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID)"
                 + "VALUES (?,?,?,?)";
 
         try {
