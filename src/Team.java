@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Team {
     private String teamName;
-    private List<Player> players = new ArrayList<>();
+    private List<String> players = new ArrayList<>();
     private int matchTournamentScore = 0;
     private int goalScore = 0;
     private boolean stillInPlay = true;
@@ -19,7 +19,7 @@ public class Team {
         return teamName;
     }
 
-    public List<Player> getPlayers() {
+    public List<String> getPlayers() {
         return players;
     }
 
@@ -31,7 +31,7 @@ public class Team {
         return goalScore;
     }
 
-    public void addPlayer(Player player) {
+    public void addPlayer(String player) {
         players.add(player);
     }
 
@@ -42,8 +42,8 @@ public class Team {
     @Override
     public String toString() {
         String teamString = "";
-        for (Player player: players) {
-            teamString += "Spiller " + player.getPlayerNumber() + " navn: " + player.getName() + ", \n";
+        for (String player: players) {
+            teamString += "Spiller: " + player + ", \n";
         }
         return "Team " + teamName + "\n" + teamString;
     }
