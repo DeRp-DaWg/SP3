@@ -39,7 +39,6 @@ abstract Tournament {
 +getTeam()
 +getMatches()
 +String toString()
-
 }
 
 class KnockoutTournament{
