@@ -43,7 +43,8 @@ public class UI {
 
         IO io = new IO();
 
-        //io.addPlayer(playerNames, 2);
+        io.addTeam(teamName);
+        io.addPlayer(playerNames, countTeams);
         countTeams++;
 
     }
