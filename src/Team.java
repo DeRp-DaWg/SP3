@@ -31,7 +31,7 @@ public class Team {
         return players;
     }
 
-    public int getMatchScore() {
+    public int getMatchTournamentScore() {
         return matchTournamentScore;
     }
 
