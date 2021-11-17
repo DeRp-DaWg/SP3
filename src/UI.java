@@ -10,6 +10,8 @@ public class UI {
     private ArrayList<Player> players = new ArrayList<>();
     private Player player;
     private Team team;
+    IO io = new IO();
+    Tournament tournament;
 
     public UI() throws IOException {
         createPlayers();
@@ -43,6 +45,11 @@ public class UI {
         }
 
         io.readFile();
+    }
+
+    public void createTeams() {
+        ArrayList<String> names = new ArrayList<>();
+        System.out.print("Indtast holdets navn: ");
     }
 
     public void announce(){
