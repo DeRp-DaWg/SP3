@@ -36,22 +36,24 @@ public class KnockoutTournament extends Tournament {
 
     public void determineLoserTeamOutcome(int team1number, int team2number, boolean team2Lost, int team1GoalScore, int team2GoalScore) {
         if (team2Lost) {
-            loserTeamGoalScore(team1GoalScore,team2GoalScore);
+            loserTeamGoalScore(team1GoalScore, team2GoalScore);
             Matches.remove(team2number);
         } else {
-            loserTeamGoalScore(team2GoalScore,team1GoalScore);
+            loserTeamGoalScore(team2GoalScore, team1GoalScore);
             Matches.remove(team1number);
         }
     }
 
     @Override
     public void ArrangeMatches() {
-for (int i = 0; i <= getTeams().length / 2; i++) {
-    Team[] tempTeams = new Team[2];
-    tempTeams[i*2] = Teams[i*2];
-    tempTeams[i*2+1] = Teams[i*2+1];
-    Match tempMatch = new Match(tempTeams, "tempMatch");
-    Matches.set(i, tempMatch);
-}
+        //for (int i = 0; i < teams.length; )
+
+        //for (int i = 0; i <= getTeams().length / 2; i++) {
+        //    Team[] tempTeams = new Team[2];
+        //    tempTeams[i * 2] = Teams[i * 2];
+        //    tempTeams[i * 2 + 1] = Teams[i * 2 + 1];
+        //    Match tempMatch = new Match(tempTeams, "tempMatch");
+        //    Matches.set(i, tempMatch);
+        //}
     }
 }
