@@ -1,17 +1,17 @@
  public class Player {
      private String name;
-     private int playerNumber = 1;
+     private int playerID;
 
-     public Player(String name, int playerNumber) {
+     public Player(String name, int playerID) {
 
          this.name = name;
-         this.playerNumber = playerNumber;
+         this.playerID = playerID;
      }
 
      public String getName() {
          return name;
      }
 
-     public int getPlayerNumber() { return playerNumber; }
+     public int getPlayerNumber() { return playerID; }
  }
 
