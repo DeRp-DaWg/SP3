@@ -52,6 +52,29 @@ public class IO {
         }
     }
 
+    // Tilføj players
+    public void addPlayer(String[] playerNames, int foreignKey){
+        Connection conn = null;
+
+        for (String playerName : playerNames) {
+
+            String sql = "INSERT INTO Players(playerName, teamID) VALUES (?, ?)";
+
+            try {
+                conn = DriverManager.getConnection(DB_URL, USER, PASS);
+                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+                pstmt.setString(1, playerName);
+                pstmt.setInt(2, foreignKey);
+
+                pstmt.addBatch();
+                pstmt.executeBatch();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void readData() {
         String[] matches;
         String[] players;

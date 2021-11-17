@@ -40,11 +40,7 @@ public class UI {
         team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
 
         IO io = new IO();
-
-        for (String playerName : playerNames) {
-            team.addPlayer(playerName);
-            //io.addToNewFile(teamName, players); Du skal ændre players her, i parameteren i IO filen til at være arraylist
-        }
+        //io.addPlayer(playerNames, 2);
 
 
     }
