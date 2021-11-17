@@ -8,7 +8,7 @@ public class IO {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "h20kBp5ka8cVYq";
+    static final String PASS = "test";
 
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
