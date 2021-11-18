@@ -39,7 +39,6 @@ public class Match {
     public void setTime(Date date) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentDate = sdf.format(date);
-        System.out.println(currentDate);
         this.date = date;
     }
 
