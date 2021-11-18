@@ -157,8 +157,18 @@ public class IO {
         }
     }
 
-    public void updateTeamScore(){
+    public void updateTeamScore(int teamID, int updateScore){
+        String sql = "UPDATE teams SET teamGoalScore = teamGoalScore + " + updateScore + " WHERE id = " + teamID;
 
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Tournament readData() {
