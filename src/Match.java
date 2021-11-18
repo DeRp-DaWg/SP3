@@ -37,4 +37,8 @@ public class Match {
     public String getMatchName() {
         return matchName;
     }
+
+    public int getScore() {
+        return score;
+    }
 }
