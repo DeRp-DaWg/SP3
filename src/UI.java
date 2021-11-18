@@ -22,9 +22,18 @@ public class UI {
 
     public UI() throws IOException {
 
+
+    }
+
+    public void start() {
         System.out.print("Vil du lave en ny turnering? Y/N  ");
         if (sc.nextLine().toLowerCase().equals("y")) {
-            createPlayers();
+            try {
+                createPlayers();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
             createTournament();
         } else {
             createTournamentFromDB();
