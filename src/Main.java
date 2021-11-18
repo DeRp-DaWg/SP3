@@ -8,6 +8,8 @@ public class Main {
 
         UI ui = new UI();
 
+        IO io = new IO();
+
         //Match match1 = new Match(teams);
         //Match[] matches = {match1};
 
