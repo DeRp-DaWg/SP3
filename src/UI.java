@@ -39,6 +39,7 @@ public class UI {
             createTournament();
         } else {
             createTournamentFromDB();
+            teams = tournament.getTeams();
         }
         tournament.ArrangeMatches();
     }

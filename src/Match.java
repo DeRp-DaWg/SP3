@@ -24,11 +24,10 @@ public class Match {
         for (int i = 0; i < teams.length; i++) {
             if (teams[i] == null) {
                 teams[i] = team;
-            }
-            else {
-                System.out.println("Team was not added to match.");
+                return;
             }
         }
+        System.out.println("Team was not added to match.");
     }
 
     public Team[] getTeams() {

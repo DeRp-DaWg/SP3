@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class KnockoutTournament extends Tournament {
     ArrayList<Match> matches = getMatches();
@@ -62,8 +63,8 @@ public class KnockoutTournament extends Tournament {
         Match match = new Match(matchNames[matchNames.length-1]);
         matches.add(match);
 
-        teams = UI.getTeams();
-
+        //teams = UI.getTeams();
+        System.out.println(Arrays.toString(teams));
         for (int i = 0; i < matches.size()/2+1; i++) {
             System.out.println("=====");
             for (int j = 0; j < 2; j++) {
