@@ -126,9 +126,9 @@ public class IO {
         try {
             matchName = match.getMatchName();
             score = match.getScore();
+            date = match.getDateAsString();
             teamOneName = match.getTeams()[0].getTeamName();
             teamTwoName = match.getTeams()[1].getTeamName();
-            date = match.getDateAsString();
         }
         catch (NullPointerException e) {
             gotMatch = false;
@@ -138,7 +138,7 @@ public class IO {
         int teamTwo = 0;
         String sql = null;
         if (gotMatch) {
-            sql = "SELECT ID FROM tournamentdb.teams WHERE teamName=? OR teamName=?";
+            sql = "SELECT ID FROM teams WHERE teamName=? OR teamName=?";
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, teamOneName);
@@ -152,10 +152,10 @@ public class IO {
             catch (SQLException e) {
                 e.printStackTrace();
             }
-            sql = "INSERT INTO Matches(matchName, score, teamOne, teamTwo) VALUES (?, ?, ?, ?)";
+            sql = "INSERT INTO Matches(matchName, score, time, teamOne, teamTwo) VALUES (?, ?, ?, ?, ?)";
         }
         else {
-            sql = "INSERT INTO Matches(matchName, score) VALUES (?, ?)";
+            sql = "INSERT INTO Matches(matchName, score, time) VALUES (?, ?, ?)";
         }
 
 
@@ -164,9 +164,10 @@ public class IO {
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, matchName);
             pstmt.setInt(2, score);
+            pstmt.setString(3, date);
             if (gotMatch) {
-                pstmt.setInt(3, teamOne);
-                pstmt.setInt(4, teamTwo);
+                pstmt.setInt(4, teamOne);
+                pstmt.setInt(5, teamTwo);
             }
             pstmt.addBatch();
             pstmt.executeBatch();
