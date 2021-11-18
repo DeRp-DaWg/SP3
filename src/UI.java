@@ -43,7 +43,7 @@ public class UI {
     }
 
     public void createPlayers() throws IOException {
-        System.out.println("Tast k for at se kamptider eller o for at oprette en ny turnering: ");
+        System.out.println("Tast t for at tilføje point til et team: ");
         String chooseOption = sc.nextLine();
 
         if(chooseOption.equals("k")){
