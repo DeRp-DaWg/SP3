@@ -41,9 +41,9 @@ abstract Tournament {
 }
 
 class KnockoutTournament{
--int winnerTeamMatchScore;
+-int winnerTeamMatchScore
 -int loserTeamMatchScore
--int goalScore = winnerTeamMatchScore - loserTeamMatchScore;
+-int goalScore
 +determineLoserTeamOutcome()
 +ArrangeMatches()
 }
