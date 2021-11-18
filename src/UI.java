@@ -51,14 +51,15 @@ public class UI {
             }else{
                 createTournamentFromDB();
                 teams = tournament.getTeams();
+
+                tournament.ArrangeMatches();
+                io.clearTable("Matches");
+                for (Match match : tournament.getMatches()) {
+                    io.insertMatchToDb(match);
+                }
+                printAllMatches();
             }
         }
-        tournament.ArrangeMatches();
-        io.clearTable("Matches");
-        for (Match match : tournament.getMatches()) {
-            io.insertMatchToDb(match);
-        }
-        printAllMatches();
     }
 
     public void createPlayers() throws IOException {
