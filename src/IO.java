@@ -109,6 +109,10 @@ public class IO {
         }
     }
 
+    public void updateTeamScore(){
+
+    }
+
     public Tournament readData() {
         Match[] matches;
         Team[] teams;

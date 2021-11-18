@@ -41,8 +41,6 @@ public class UI {
     }
 
     public void createPlayers() throws IOException {
-
-
         System.out.println("Tast k for at se kamptider eller o for at oprette en ny turnering: ");
         String chooseOption = sc.nextLine();
 
