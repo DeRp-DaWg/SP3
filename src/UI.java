@@ -15,12 +15,20 @@ public class UI {
     private ArrayList<String> players = new ArrayList<>();
     private String player;
     private Team team;
+    private static Team[] teams;
     IO io = new IO();
     Tournament tournament;
     int countTeams = 1;
 
     public UI() throws IOException {
         createPlayers();
+        System.out.print("Vil du lave en ny turnering? Y/N  ");
+        if (sc.nextLine().toLowerCase().equals("y")) {
+            createTournament();
+        } else {
+            createTournamentFromDB();
+        }
+        tournament.ArrangeMatches();
     }
 
     public void createPlayers() throws IOException {
@@ -35,7 +43,7 @@ public class UI {
         }
 
         //Turneringsformanden
-
+        teams = new Team[16];
         while (countTeams < 17){
             //Get teamname
             System.out.println("Holdnavn: ");
@@ -52,6 +60,7 @@ public class UI {
             String[] splitPlayerNames = getPlayerNames.split(",");
 
             team = new Team(teamName,matchTournamentScore,goalScore,stillInPlay);
+            teams[countTeams-1] = team;
 
             io.addTeam(teamName);
             io.addPlayer(splitPlayerNames, countTeams);
@@ -63,12 +72,18 @@ public class UI {
     }
 
     public void createTournament() {
-        Team[] teams = new Team[2];
-        teams[0] = new Team("Test team name");
-        tournament = new KnockoutTournament("Test tournament name", teams);
+        System.out.println();
+        System.out.print("Indtast turneringens navn: ");
+        String tournamentName = sc.nextLine();
+        System.out.println();
+        tournament = new KnockoutTournament(tournamentName, teams);
     }
 
     public void createTournamentFromDB() {
         tournament = io.readData();
+    }
+
+    public static Team[] getTeams() {
+        return teams;
     }
 }

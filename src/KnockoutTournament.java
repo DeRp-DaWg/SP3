@@ -62,13 +62,13 @@ public class KnockoutTournament extends Tournament {
         Match match = new Match(matchNames[matchNames.length-1]);
         matches.add(match);
 
-        //TODO: Fyld de otte første kampe op med hold.
+        teams = UI.getTeams();
 
         for (int i = 0; i < matches.size()/2+1; i++) {
             System.out.println("=====");
             for (int j = 0; j < 2; j++) {
                 System.out.println(i*2+j);
-                //matches.get(i).addTeam(teams[i*2+j]);
+                matches.get(i).addTeam(teams[i*2+j]);
             }
         }
 
