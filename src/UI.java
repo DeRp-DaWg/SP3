@@ -64,29 +64,35 @@ public class UI {
                 }
                 printAllMatches();
             }
+            System.out.println("Vil du tilføje en score for en kamp? Y/N");
+            ask = sc.nextLine().toLowerCase();
+            if(ask.equals("y")) {
+                printAllMatches();
+                System.out.println("Skriv navnet på kampen: ");
+                String inputMatchName = sc.nextLine();
+                for (Match match : tournament.getMatches()) {
+                    if(match.getMatchName().equals(inputMatchName)) {
+                        System.out.println("Hvor mange point havde vinderen?");
+                        int score = Integer.parseInt(sc.nextLine());
+                        System.out.println("Hvem vandt? 1 eller 2");
+                        int winningTeam = Integer.parseInt(sc.nextLine());
+                        if (winningTeam == 1) {
+                            match.setScore(score);
+                            tournament.createOutcome(match);
+                        }
+                        else {
+                            match.setScore(-score);
+                            tournament.createOutcome(match);
+                        }
+                    }
+                }
+                for (Match match : tournament.getMatches()) {
+                    io.updateMatchInDB(match);
+                }
+            }
+
         }
-        /*
-        Match match1 = tournament.getMatches().get(0);
-        match1.setScore(6);
-        tournament.createOutcome(match1);
-        io.updateMatchInDB(match1);
 
-        Match match2 = tournament.getMatches().get(1);
-        match2.setScore(-8);
-        tournament.createOutcome(match2);
-        io.updateMatchInDB(match2);
-
-        Match match3 = tournament.getMatches().get(8);
-        match3.setScore(4);
-        tournament.createOutcome(match3);
-        io.updateMatchInDB(match3);
-
-        printAllMatches();
-
-        //Match matchhh = tournament.getMatches().get(8);
-        //matchhh.setScore(7);
-        //tournament.createOutcome(matchhh);
-*/
         /*
         tournament.ArrangeMatches();
         io.clearTable("Matches");

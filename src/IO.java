@@ -1,3 +1,4 @@
+import javax.xml.transform.Result;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -178,6 +179,7 @@ public class IO {
     }
 
     public void updateMatchInDB(Match match) {
+        ResultSet rs = null;
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
         }
@@ -198,17 +200,31 @@ public class IO {
             teamTwoName = match.getTeams()[1].getTeamName();
         }
         catch (NullPointerException e) {
-            e.printStackTrace();
+            System.out.print("");
         }
-
         int teamOne = 0;
         int teamTwo = 0;
         String sql = null;
-        sql = "UPDATE matches SET teamOne=?, teamTwo=?, score=?, time=? WHERE matchName=?;";
+        sql = "SELECT ID FROM teams WHERE teamName=? OR teamName=?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, 1);
-            pstmt.setInt(2, 2);
+            pstmt.setString(1, teamOneName);
+            pstmt.setString(2, teamTwoName);
+            rs = pstmt.executeQuery();
+            rs.next();
+            teamOne = rs.getInt("ID");
+            rs.next();
+            teamTwo = rs.getInt("ID");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "UPDATE matches SET teamOne=?, teamTwo=?, score=?, time=? WHERE matchName=?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, teamOne);
+            pstmt.setInt(2, teamTwo);
             pstmt.setInt(3,score);
             pstmt.setString(4,date);
             pstmt.setString(5,matchName);

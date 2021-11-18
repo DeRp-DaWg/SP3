@@ -69,7 +69,6 @@ public class KnockoutTournament extends Tournament {
                             case 0:
                                 break;
                             case 1:
-                                System.out.println("TESTTT");
                                 match1.addTeam(teamOne);
                                 break;
                             case 2:
