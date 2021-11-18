@@ -2,7 +2,8 @@
 'https://plantuml.com/class-diagram
 
 class Main{
--UI ui
+UI ui
+IO io
 }
 
 
@@ -47,11 +48,6 @@ class KnockoutTournament{
 +ArrangeMatches()
 }
 
-class GroupTournament{
--Team[] ScoreBoard
-+ArrangeMatches()
-}
-
 class UI {
 -String tournamentType
 -String teamName
@@ -91,6 +87,5 @@ Tournament *-- "8" Match
 Tournament *-- Team
 Match o-- "2" Team
 Tournament <|-- KnockoutTournament
-Tournament <|-- GroupTournament
 Main o-- UI
 @enduml
