@@ -90,7 +90,7 @@ public class IO {
         }
     }
 
-    public void insertMatchToDb(String matchName, int teamOne, int teamTwo, int score){
+    /*public void insertMatchToDb(String matchName, int teamOne, int teamTwo, int score){
         String sql = "INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES (?, ?, ?, ?)";
 
         try {
@@ -105,6 +105,54 @@ public class IO {
             pstmt.addBatch();
             pstmt.executeBatch();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } */
+
+    public void insertMatchToDb(Match match){
+        ResultSet rs = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String matchName = match.getMatchName();
+        int score = match.getScore();
+        String teamOneName = match.getTeams()[0].getTeamName();
+        String teamTwoName = match.getTeams()[1].getTeamName();
+        String[] teamNames = {teamOneName, teamTwoName};
+        int teamOne = -1;
+        int teamTwo = -1;
+
+        String sql = "SELECT ID FROM teams WHERE teamName=?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, teamOneName);
+            pstmt.addBatch();
+            pstmt.executeBatch();
+            rs = pstmt.executeQuery();
+            teamOne = rs.getInt("ID");
+            rs.next();
+            teamTwo = rs.getInt("ID");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        sql = "INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES (?, ?, ?, ?)";
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, matchName);
+            pstmt.setInt(2, teamOne);
+            pstmt.setInt(3, teamTwo);
+            pstmt.setInt(4, score);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }
