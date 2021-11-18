@@ -53,11 +53,13 @@ public class UI {
                 teams = tournament.getTeams();
             }
         }
+
         tournament.ArrangeMatches();
         io.clearTable("Matches");
         for (Match match : tournament.getMatches()) {
             io.insertMatchToDb(match);
         }
+
         printAllMatches();
     }
 
