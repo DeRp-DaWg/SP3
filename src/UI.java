@@ -35,6 +35,10 @@ public class UI {
                 e.printStackTrace();
             }
             createTournament();
+            tournament.ArrangeMatches();
+            for (Match match : tournament.getMatches()) {
+                io.insertMatchToDb(match);
+            }
         }
 
         if(ask.equals("n")){
@@ -61,20 +65,28 @@ public class UI {
                 printAllMatches();
             }
         }
+        /*
         Match match1 = tournament.getMatches().get(0);
         match1.setScore(6);
         tournament.createOutcome(match1);
+        io.updateMatchInDB(match1);
+
         Match match2 = tournament.getMatches().get(1);
         match2.setScore(-8);
         tournament.createOutcome(match2);
+        io.updateMatchInDB(match2);
+
         Match match3 = tournament.getMatches().get(8);
         match3.setScore(4);
         tournament.createOutcome(match3);
+        io.updateMatchInDB(match3);
+
         printAllMatches();
+
         //Match matchhh = tournament.getMatches().get(8);
         //matchhh.setScore(7);
         //tournament.createOutcome(matchhh);
-
+*/
         /*
         tournament.ArrangeMatches();
         io.clearTable("Matches");
