@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -23,8 +24,8 @@ public class UI {
         sc = new Scanner(System.in);
     }
 
-    public void start() {
-        System.out.print("Vil du lave en ny turnering? Y/N  ");
+    public void start() throws SQLException {
+        System.out.print("Vil du lave en ny turnering? Y/N:  ");
         String ask = sc.nextLine().toLowerCase();
         if (ask.equals("y")) {
             try {
@@ -37,15 +38,15 @@ public class UI {
         }
 
         if(ask.equals("n")){
-            System.out.println("Vil du tilføje point til et eksisterende team? Y/N");
+            System.out.println("Vil du tilføje point til et eksisterende team? Y/N:  ");
             ask = sc.nextLine().toLowerCase();
             if(ask.equals("y")){
-                System.out.println("Vælg et team, skriv derefter et komma efterfulgt af antallet af point, og matchets navn. Fx 1, 3, semifinale: ");
-                ask = sc.nextLine().toLowerCase();
+                System.out.println("Skriv finalenavnet efterfulgt af et komma, af to forskellige teams der er separeret af et komma. Fx quarterfinals1, 1, 3: ");
+                ask = sc.nextLine();
                 String[] splitAsk = ask.split(",");
-                int splitAskFirst = Integer.parseInt(splitAsk[0].replace(" ", ""));
+                String splitAskFirst = splitAsk[0].replace(" ", "");
                 int splitAskSecond = Integer.parseInt(splitAsk[1].replace(" ", ""));
-                String splitAskThird = splitAsk[2].replace(" ", "");
+                int splitAskThird = Integer.parseInt(splitAsk[2].replace(" ", ""));
                 io.updateTeamScore(splitAskFirst, splitAskSecond, splitAskThird);
                 System.out.println("Dine data er nu gemt!");
             }else{

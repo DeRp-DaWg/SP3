@@ -220,18 +220,24 @@ public class IO {
         }
     }
 
-    public void updateTeamScore(int teamID, int updateScore, String getMatchName){
-        String sql = "UPDATE teams SET teamGoalScore = teamGoalScore + " + updateScore + " WHERE id = " + teamID;
+    public void updateTeamScore(String getMatchName, int teamOne, int teamTwo) throws SQLException {
+        String sql1 = "SET SQL_SAFE_UPDATES = 0";
+        String sql2 = "UPDATE matches SET teamOne = 1, teamTwo=2 WHERE matchName= \"Quarterfinals1\"";
+        String sql4 = "SET SQL_SAFE_UPDATES = 0";
 
-        try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        PreparedStatement pstmt1 = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pstmt2 = conn.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pstmt4 = conn.prepareStatement(sql4, Statement.RETURN_GENERATED_KEYS);
 
-            pstmt.addBatch();
-            pstmt.executeBatch();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+        pstmt1.addBatch();
+        pstmt2.addBatch();
+        pstmt4.addBatch();
+
+        pstmt1.executeBatch();
+        pstmt2.executeBatch();
+        pstmt4.executeBatch();
     }
 
     public Tournament readData() {
@@ -347,6 +353,16 @@ public class IO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public void updateSql(String sql){
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,8 +1,9 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         //Team team1 = new Team("Team 1",0,0,false);
         //Team team2 = new Team("Team 2",0,0,false);
 
