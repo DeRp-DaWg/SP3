@@ -21,8 +21,7 @@ public class UI {
     int countTeams = 1;
 
     public UI() throws IOException {
-
-
+        sc = new Scanner(System.in);
     }
 
     public void start() {
@@ -42,7 +41,7 @@ public class UI {
     }
 
     public void createPlayers() throws IOException {
-        sc = new Scanner(System.in);
+
 
         System.out.println("Tast k for at se kamptider eller o for at oprette en ny turnering: ");
         String chooseOption = sc.nextLine();
