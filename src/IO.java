@@ -117,38 +117,53 @@ public class IO {
         catch (SQLException e) {
             e.printStackTrace();
         }
-
-        String matchName = match.getMatchName();
-        int score = match.getScore();
-        String teamOneName = match.getTeams()[0].getTeamName();
-        String teamTwoName = match.getTeams()[1].getTeamName();
-        String[] teamNames = {teamOneName, teamTwoName};
-        int teamOne = -1;
-        int teamTwo = -1;
-
-        String sql = "SELECT ID FROM teams WHERE teamName=?";
+        String matchName = null;
+        int score = 0;
+        String teamOneName = null;
+        String teamTwoName = null;
+        boolean gotMatch = true;
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, teamOneName);
-            pstmt.addBatch();
-            pstmt.executeBatch();
-            rs = pstmt.executeQuery();
-            teamOne = rs.getInt("ID");
-            rs.next();
-            teamTwo = rs.getInt("ID");
+            matchName = match.getMatchName();
+            score = match.getScore();
+            teamOneName = match.getTeams()[0].getTeamName();
+            teamTwoName = match.getTeams()[1].getTeamName();
+        } catch (NullPointerException e) {
+            gotMatch = false;
         }
-        catch (SQLException e) {
-            e.printStackTrace();
+
+        int teamOne = 0;
+        int teamTwo = 0;
+        String sql = null;
+        if (gotMatch) {
+            sql = "SELECT ID FROM tournamentdb.teams WHERE teamName=? OR teamName=?";
+            try {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, teamOneName);
+                pstmt.setString(2, teamTwoName);
+                rs = pstmt.executeQuery();
+                rs.next();
+                teamOne = rs.getInt("ID");
+                rs.next();
+                teamTwo = rs.getInt("ID");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            sql = "INSERT INTO Matches(matchName, score, teamOne, teamTwo) VALUES (?, ?, ?, ?)";
         }
-        sql = "INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES (?, ?, ?, ?)";
+        else {
+            sql = "INSERT INTO Matches(matchName, score) VALUES (?, ?)";
+        }
+
+
 
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, matchName);
-            pstmt.setInt(2, teamOne);
-            pstmt.setInt(3, teamTwo);
-            pstmt.setInt(4, score);
-
+            pstmt.setInt(2, score);
+            if (gotMatch) {
+                pstmt.setInt(3, teamOne);
+                pstmt.setInt(4, teamTwo);
+            }
             pstmt.addBatch();
             pstmt.executeBatch();
         }
@@ -239,8 +254,13 @@ public class IO {
                 int teamOne = rs.getInt("teamOne");
                 int teamTwo = rs.getInt("teamTwo");
                 int score = rs.getInt("score");
-                Team[] matchTeams = {teams[teamOne-1], teams[teamTwo-1]};
-                matches[ID-1] = new Match(matchTeams, matchName, score);
+                if (!(teamOne <= 0)) {
+                    Team[] matchTeams = {teams[teamOne-1], teams[teamTwo-1]};
+                    matches[ID-1] = new Match(matchTeams, matchName, score);
+                } else {
+                    matches[ID-1] = new Match(matchName);
+                }
+
             }
             ArrayList<Match> matchesAL = new ArrayList<>(Arrays.asList(matches));
             Tournament tournament = new KnockoutTournament("Tournament Name!", teams, matchesAL);
