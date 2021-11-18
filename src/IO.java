@@ -90,26 +90,6 @@ public class IO {
             }
         }
     }
-
-    /*public void insertMatchToDb(String matchName, int teamOne, int teamTwo, int score){
-        String sql = "INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES (?, ?, ?, ?)";
-
-        try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-            pstmt.setString(1, matchName);
-            pstmt.setInt(2, teamOne);
-            pstmt.setInt(3, teamTwo);
-            pstmt.setInt(4, score);
-
-            pstmt.addBatch();
-            pstmt.executeBatch();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    } */
-
     public void insertMatchToDb(Match match){
         ResultSet rs = null;
         try {

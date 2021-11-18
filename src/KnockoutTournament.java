@@ -120,20 +120,10 @@ public class KnockoutTournament extends Tournament {
         }
         matches.add(match);
 
-        //teams = UI.getTeams();
-        //TODO: Flyt de her println()'s ind i UI.
         for (int i = 0; i < matches.size()/2+1; i++) {
             for (int j = 0; j < 2; j++) {
                 matches.get(i).addTeam(teams[i*2+j]);
             }
         }
-
-        //for (int i = 0; i <= getTeams().length / 2; i++) {
-        //    Team[] tempTeams = new Team[2];
-        //    tempTeams[i * 2] = Teams[i * 2];
-        //    tempTeams[i * 2 + 1] = Teams[i * 2 + 1];
-        //    Match tempMatch = new Match(tempTeams, "tempMatch");
-        //    Matches.set(i, tempMatch);
-        //}
     }
 }
