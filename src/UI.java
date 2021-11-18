@@ -54,6 +54,10 @@ public class UI {
             }
         }
         tournament.ArrangeMatches();
+        io.clearTable("Matches");
+        for (Match match : tournament.getMatches()) {
+            io.insertMatchToDb(match);
+        }
     }
 
     public void createPlayers() throws IOException {
