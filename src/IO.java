@@ -128,7 +128,6 @@ public class IO {
             teamOneName = match.getTeams()[0].getTeamName();
             teamTwoName = match.getTeams()[1].getTeamName();
         } catch (NullPointerException e) {
-            System.out.println("One or multiple getters returned null");
             gotMatch = false;
         }
 
