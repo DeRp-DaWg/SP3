@@ -90,7 +90,7 @@ public class IO {
         }
     }
 
-    public void insertMatchToDb(String matchName, String teamOne, String teamTwo, int score){
+    public void insertMatchToDb(String matchName, int teamOne, int teamTwo, int score){
         String sql = "INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES (?, ?, ?, ?)";
 
         try {
@@ -98,8 +98,8 @@ public class IO {
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, matchName);
-            pstmt.setString(2, teamOne);
-            pstmt.setString(3, teamTwo);
+            pstmt.setInt(2, teamOne);
+            pstmt.setInt(3, teamTwo);
             pstmt.setInt(4, score);
 
             pstmt.addBatch();
