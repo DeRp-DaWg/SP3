@@ -1,5 +1,7 @@
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class KnockoutTournament extends Tournament {
     ArrayList<Match> matches = getMatches();
@@ -47,6 +49,7 @@ public class KnockoutTournament extends Tournament {
 
     @Override
     public void ArrangeMatches() {
+        Date date = new Date();
         String[] matchNames = {"Eight-finals", "Quarterfinals", "Semifinals", "Final"};
         int matchCount = 8;
         int iteration = 0;
@@ -54,6 +57,16 @@ public class KnockoutTournament extends Tournament {
             for (int i = 1; i < matchCount+1; i++) {
                 Match match = new Match(matchNames[iteration]+i);
                 matches.add(match);
+                long time = date.getTime();
+                long hours = 2;
+                time += 1000*60*60*hours;
+                date.setTime(time);
+                try {
+                    match.setTime(date);
+                }
+                catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
             iteration++;
             matchCount /= 2;

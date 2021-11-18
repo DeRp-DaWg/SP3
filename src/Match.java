@@ -36,10 +36,10 @@ public class Match {
         System.out.println("Team was not added to match.");
     }
 
-    public void setTime(String Dateinput) throws ParseException {
-        String tempDate = Dateinput;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = format.parse(tempDate);
+    public void setTime(Date date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDate = sdf.format(date);
+        System.out.println(currentDate);
         this.date = date;
     }
 
@@ -53,6 +53,12 @@ public class Match {
 
     public int getScore() {
         return score;
+    }
+
+    public String getDateAsString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDate = sdf.format(this.date);
+        return currentDate;
     }
 
     @Override

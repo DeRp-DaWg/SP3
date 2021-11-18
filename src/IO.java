@@ -121,13 +121,16 @@ public class IO {
         int score = 0;
         String teamOneName = null;
         String teamTwoName = null;
+        String date = null;
         boolean gotMatch = true;
         try {
             matchName = match.getMatchName();
             score = match.getScore();
             teamOneName = match.getTeams()[0].getTeamName();
             teamTwoName = match.getTeams()[1].getTeamName();
-        } catch (NullPointerException e) {
+            date = match.getDateAsString();
+        }
+        catch (NullPointerException e) {
             gotMatch = false;
         }
 
@@ -145,7 +148,8 @@ public class IO {
                 teamOne = rs.getInt("ID");
                 rs.next();
                 teamTwo = rs.getInt("ID");
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 e.printStackTrace();
             }
             sql = "INSERT INTO Matches(matchName, score, teamOne, teamTwo) VALUES (?, ?, ?, ?)";
@@ -169,6 +173,54 @@ public class IO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void updateMatchInDB(Match match) {
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String matchName = null;
+        int score = 0;
+        String teamOneName = null;
+        String teamTwoName = null;
+        String date = null;
+        boolean gotMatch = true;
+        try {
+            matchName = match.getMatchName();
+            score = match.getScore();
+            teamOneName = match.getTeams()[0].getTeamName();
+            teamTwoName = match.getTeams()[1].getTeamName();
+            date = match.getDateAsString();
+        }
+        catch (NullPointerException e) {
+            gotMatch = false;
+        }
+
+        int teamOne = 0;
+        int teamTwo = 0;
+        String sql = null;
+        if (gotMatch) {
+            sql = "UPDATE matches SET teamOne=?, teamTwo=?, score=?, time=? WHERE matchName=?;";
+            try {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, 1);
+                pstmt.setInt(2, 2);
+                pstmt.setInt(3,score);
+                pstmt.setString(4,date);
+                pstmt.setString(5,matchName);
+                pstmt.addBatch();
+                pstmt.executeBatch();
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            System.out.println("You are not supposed to see this message.");
         }
     }
 

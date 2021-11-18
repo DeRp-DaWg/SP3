@@ -1,8 +1,7 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class UI {
     private String tournamentType = "";
@@ -60,6 +59,28 @@ public class UI {
                 printAllMatches();
             }
         }
+
+        /*
+        tournament.ArrangeMatches();
+        io.clearTable("Matches");
+        for (Match match : tournament.getMatches()) {
+            io.insertMatchToDb(match);
+        }
+        printAllMatches();
+        //Date date = new Date(2021,4,2);
+        Date date = new Date();
+        Match match = tournament.getMatches().get(0);
+        try {
+            match.setTime(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+        io.updateMatchInDB(match);
+        for (Match m : tournament.getMatches()) {
+            io.updateMatchInDB(m);
+        }
+        */
     }
     public void SeeTheMatches () {
         System.out.println("Vil du se alle kampene? Y/N");
