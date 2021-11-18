@@ -26,6 +26,9 @@ public class UI {
 
     public void start() {
         System.out.print("Vil du lave en ny turnering? Y/N  ");
+        io.clearTable("Matches");
+        io.clearTable("Teams");
+        io.clearTable("Players");
         if (sc.nextLine().toLowerCase().equals("y")) {
             try {
                 createPlayers();
