@@ -58,6 +58,7 @@ public class UI {
         for (Match match : tournament.getMatches()) {
             io.insertMatchToDb(match);
         }
+        printAllMatches();
     }
 
     public void createPlayers() throws IOException {
@@ -104,6 +105,13 @@ public class UI {
 
     public void createTournamentFromDB() {
         tournament = io.readData();
+    }
+
+    public void printAllMatches() {
+        for (Match match : tournament.getMatches()) {
+            System.out.println(match);
+            System.out.println();
+        }
     }
 
     public static Team[] getTeams() {

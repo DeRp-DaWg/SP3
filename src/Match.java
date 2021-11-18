@@ -2,6 +2,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Match {
@@ -52,5 +53,34 @@ public class Match {
 
     public int getScore() {
         return score;
+    }
+
+    @Override
+    public String toString() {
+        String str =
+                "===== "+matchName+" =====" + "\n";
+        try {
+            str +=
+                teams[0].getTeamName();
+        }
+        catch (NullPointerException e) {
+            str += "TBA";
+        }
+        str +=
+                " vs ";
+        try {
+            str +=
+                teams[1].getTeamName();
+        }
+        catch (NullPointerException e) {
+            str += "TBA";
+        }
+        str += "\n";
+        if (score != 0) {
+            str +=
+                "score: " + score + "\n";
+        }
+        str += date;
+        return str;
     }
 }
