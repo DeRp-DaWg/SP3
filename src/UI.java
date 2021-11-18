@@ -41,10 +41,12 @@ public class UI {
             System.out.println("Vil du tilføje point til et eksisterende team? Y/N");
             ask = sc.nextLine().toLowerCase();
             if(ask.equals("y")){
-                System.out.println("vælg et team, skriv derefter et komma og antallet af point. Fx 1, 3");
+                System.out.println("Vælg et team, skriv derefter et komma og antallet af point. Fx 1, 3: ");
                 ask = sc.nextLine().toLowerCase();
                 String[] splitAsk = ask.split(",");
-                io.updateTeamScore(Integer.parseInt(splitAsk[0]), Integer.parseInt(splitAsk[1]));
+                int splitAskFirst = Integer.parseInt(splitAsk[0].replace(" ", ""));
+                int splitAskSecond = Integer.parseInt(splitAsk[1].replace(" ", ""));
+                io.updateTeamScore(splitAskFirst, splitAskSecond);
                 System.out.println("Dine data er nu gemt!");
             }else{
                 createTournamentFromDB();
