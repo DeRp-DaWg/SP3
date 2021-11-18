@@ -34,10 +34,9 @@ public class UI {
             return;
         }
 
-
         //Turneringsformanden
 
-        while (teamName.toLowerCase() != "done"){
+        while (countTeams < 17){
             //Get teamname
             System.out.println("Holdnavn: ");
             teamName = sc.nextLine();
@@ -60,15 +59,6 @@ public class UI {
 
             System.out.println("\nTilføj et til hold eller skriv done hvis du er færdig\n");
         }
-
-    }
-
-    public void createTeams() {
-        ArrayList<String> names = new ArrayList<>();
-        System.out.print("Indtast holdets navn: ");
-    }
-
-    public void announce() {
 
     }
 

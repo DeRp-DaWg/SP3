@@ -7,6 +7,10 @@ public class DBReadTest {
 
         IO io = new IO();
         io.readData();
+        Team[] teams = new Team[1];
+        teams[0] = new Team("HEJ");
+        Tournament tournament = new KnockoutTournament("Tournament Name!", teams);
+        tournament.ArrangeMatches();
 
         //Match match1 = new Match(teams);
         //Match[] matches = {match1};

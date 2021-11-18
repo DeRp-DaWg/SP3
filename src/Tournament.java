@@ -4,7 +4,7 @@ import java.util.Arrays;
 public abstract class Tournament {
     private String tournamentName;
     private Team[] teams;
-    private ArrayList <Match> matches;
+    private ArrayList<Match> matches = new ArrayList<>();
 
     public Tournament(String tournamentName, Team[] teams) {
         this.tournamentName = tournamentName;
