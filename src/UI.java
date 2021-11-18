@@ -21,9 +21,10 @@ public class UI {
     int countTeams = 1;
 
     public UI() throws IOException {
-        createPlayers();
+
         System.out.print("Vil du lave en ny turnering? Y/N  ");
         if (sc.nextLine().toLowerCase().equals("y")) {
+            createPlayers();
             createTournament();
         } else {
             createTournamentFromDB();
