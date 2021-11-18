@@ -61,6 +61,18 @@ public class UI {
             }
         }
     }
+    public void SeeTheMatches () {
+        System.out.println("Vil du se alle kampene? Y/N");
+        String ask = sc.nextLine().toLowerCase();
+
+        if (ask.equals("y")) {
+            System.out.println("Værsgo, her kan du se alle kampene");
+            ask = sc.nextLine().toLowerCase();
+        }
+        if (ask.equals("n")){
+
+        }
+    }
 
     public void createPlayers() throws IOException {
         io.clearTable("Matches");
