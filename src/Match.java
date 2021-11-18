@@ -1,9 +1,14 @@
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Match {
     private Team[] teams = new Team[2];
     private String matchName;
     private int score;
+    private Date date;
 
     public Match(String matchName) {
         this.matchName = matchName;
@@ -28,6 +33,13 @@ public class Match {
             }
         }
         System.out.println("Team was not added to match.");
+    }
+
+    public void setTime(String Dateinput) throws ParseException {
+        String tempDate = Dateinput;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = format.parse(tempDate);
+        this.date = date;
     }
 
     public Team[] getTeams() {
