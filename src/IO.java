@@ -193,35 +193,30 @@ public class IO {
         try {
             matchName = match.getMatchName();
             score = match.getScore();
+            date = match.getDateAsString();
             teamOneName = match.getTeams()[0].getTeamName();
             teamTwoName = match.getTeams()[1].getTeamName();
-            date = match.getDateAsString();
         }
         catch (NullPointerException e) {
-            gotMatch = false;
+            e.printStackTrace();
         }
 
         int teamOne = 0;
         int teamTwo = 0;
         String sql = null;
-        if (gotMatch) {
-            sql = "UPDATE matches SET teamOne=?, teamTwo=?, score=?, time=? WHERE matchName=?;";
-            try {
-                PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setInt(1, 1);
-                pstmt.setInt(2, 2);
-                pstmt.setInt(3,score);
-                pstmt.setString(4,date);
-                pstmt.setString(5,matchName);
-                pstmt.addBatch();
-                pstmt.executeBatch();
-            }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
+        sql = "UPDATE matches SET teamOne=?, teamTwo=?, score=?, time=? WHERE matchName=?;";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, 1);
+            pstmt.setInt(2, 2);
+            pstmt.setInt(3,score);
+            pstmt.setString(4,date);
+            pstmt.setString(5,matchName);
+            pstmt.addBatch();
+            pstmt.executeBatch();
         }
-        else {
-            System.out.println("You are not supposed to see this message.");
+        catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

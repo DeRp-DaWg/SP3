@@ -8,7 +8,7 @@ import java.util.Date;
 public class Match {
     private Team[] teams = new Team[2];
     private String matchName;
-    private int score;
+    private int score = 0;
     private Date date;
 
     public Match(String matchName) {
