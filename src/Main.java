@@ -7,6 +7,7 @@ public class Main {
         //Team team2 = new Team("Team 2",0,0,false);
 
         UI ui = new UI();
+        ui.start();
 
         IO io = new IO();
 
