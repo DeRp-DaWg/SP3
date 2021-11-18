@@ -26,6 +26,7 @@ public class UI {
 
     public void start() {
         System.out.print("Vil du lave en ny turnering? Y/N  ");
+
         if (sc.nextLine().toLowerCase().equals("y")) {
             try {
                 createPlayers();
@@ -36,13 +37,12 @@ public class UI {
             createTournament();
         } else {
             createTournamentFromDB();
+            teams = tournament.getTeams();
         }
         tournament.ArrangeMatches();
     }
 
     public void createPlayers() throws IOException {
-
-
         System.out.println("Tast k for at se kamptider eller o for at oprette en ny turnering: ");
         String chooseOption = sc.nextLine();
 
@@ -50,6 +50,10 @@ public class UI {
             System.out.println("Vis data");
             return;
         }
+
+        io.clearTable("Matches");
+        io.clearTable("Teams");
+        io.clearTable("Players");
 
         //Turneringsformanden
         teams = new Team[16];

@@ -109,6 +109,10 @@ public class IO {
         }
     }
 
+    public void updateTeamScore(){
+
+    }
+
     public Tournament readData() {
         Match[] matches;
         Team[] teams;
@@ -198,5 +202,27 @@ public class IO {
             }
         }
         return null;
+    }
+
+    public void clearTable(String getTable){
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement("SET FOREIGN_KEY_CHECKS = 0", Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.addBatch();
+
+            PreparedStatement pstmt1 = conn.prepareStatement("TRUNCATE TABLE " + getTable, Statement.RETURN_GENERATED_KEYS);
+            pstmt1.addBatch();
+
+            PreparedStatement pstmt2 = conn.prepareStatement("SET FOREIGN_KEY_CHECKS = 1", Statement.RETURN_GENERATED_KEYS);
+            pstmt2.addBatch();
+
+            pstmt.executeBatch();
+            pstmt1.executeBatch();
+            pstmt2.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
