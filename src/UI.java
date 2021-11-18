@@ -37,6 +37,7 @@ public class UI {
         }
 
         if(ask.equals("n")){
+
             System.out.println("Vil du tilføje point til et eksisterende team? Y/N");
             ask = sc.nextLine().toLowerCase();
             if(ask.equals("y")){
@@ -82,8 +83,8 @@ public class UI {
         }
         */
     }
-    public void SeeTheMatches () {
-        System.out.println("Vil du se alle kampene? Y/N");
+    public void seeTheMatches () {
+        System.out.println("Vil du se alle kampene? Y/N: ");
         String ask = sc.nextLine().toLowerCase();
         if (ask.equals("y")) {
             System.out.println("Værsgo, her kan du se alle kampene");
