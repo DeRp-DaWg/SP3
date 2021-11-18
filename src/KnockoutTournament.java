@@ -64,6 +64,7 @@ public class KnockoutTournament extends Tournament {
         matches.add(match);
 
         //teams = UI.getTeams();
+        //TODO: Flyt de her println()'s ind i UI.
         System.out.println(Arrays.toString(teams));
         for (int i = 0; i < matches.size()/2+1; i++) {
             System.out.println("===== "+matches.get(i).getMatchName()+" =====");
