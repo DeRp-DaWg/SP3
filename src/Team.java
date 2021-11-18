@@ -43,6 +43,14 @@ public class Team {
         return goalScore;
     }
 
+    public boolean isStillInPlay() {
+        return stillInPlay;
+    }
+
+    public void setStillInPlay(boolean stillInPlay) {
+        this.stillInPlay = stillInPlay;
+    }
+
     @Override
     public String toString() {
         String teamString = "";

@@ -13,6 +13,8 @@ public abstract class Tournament {
 
     public abstract void ArrangeMatches();
 
+    public abstract void createOutcome(Match match);
+
     public String getTournamentName() {
         return tournamentName;
     }

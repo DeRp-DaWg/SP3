@@ -10,6 +10,7 @@ public class Match {
     private String matchName;
     private int score = 0;
     private Date date;
+    private boolean hasSpace = true;
 
     public Match(String matchName) {
         this.matchName = matchName;
@@ -32,6 +33,7 @@ public class Match {
                 teams[i] = team;
                 return;
             }
+            hasSpace = false;
         }
         System.out.println("Team was not added to match.");
     }
@@ -54,10 +56,30 @@ public class Match {
         return score;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public String getDateAsString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentDate = sdf.format(this.date);
         return currentDate;
+    }
+
+    public int findMatchResults() {
+        if (score > 0) {
+            teams[1].setStillInPlay(false);
+            return 1;
+        }
+        if (score < 0) {
+            teams[0].setStillInPlay(false);
+            return 2;
+        }
+        return 0;
+    }
+
+    public boolean hasSpace() {
+        return hasSpace;
     }
 
     @Override
@@ -82,8 +104,16 @@ public class Match {
         }
         str += "\n";
         if (score != 0) {
+            String scoreStr = "";
+            if (score > 0) {
+                scoreStr += "10-" + Math.abs(score-10);
+            }
+            else {
+                scoreStr += Math.abs(10+score) + "-10";
+            }
+
             str +=
-                "score: " + score + "\n";
+                "score: " + scoreStr + "\n";
         }
         str += date;
         return str;

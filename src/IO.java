@@ -223,7 +223,7 @@ public class IO {
     public void updateTeamScore(String getMatchName, int teamOne, int teamTwo) throws SQLException {
         String sql1 = "SET SQL_SAFE_UPDATES = 0";
         String sql2 = "UPDATE matches SET teamOne = 1, teamTwo=2 WHERE matchName= \"Quarterfinals1\"";
-        String sql4 = "SET SQL_SAFE_UPDATES = 0";
+        String sql4 = "SET SQL_SAFE_UPDATES = 1";
 
         conn = DriverManager.getConnection(DB_URL, USER, PASS);
         PreparedStatement pstmt1 = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);

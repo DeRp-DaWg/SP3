@@ -48,6 +48,42 @@ public class KnockoutTournament extends Tournament {
     }
 
     @Override
+    public void createOutcome(Match match) {
+        Team teamOne = match.getTeams()[0];
+        Team teamTwo = match.getTeams()[1];
+        String[] matchNames = {"Eight-finals", "Quarterfinals", "Semifinals", "Final"};
+        String matchName = match.getMatchName();
+        matchName = matchName.replaceAll("\\d", "");
+        for (int i = 0; i < matchNames.length; i++) {
+            if (matchNames[i].equals(matchName)) {
+                if (matchNames[i].equals(matchNames[matchNames.length-1])) {
+                    break;
+                }
+                String nextMatchName = matchNames[i+1];
+                for (Match match1 : matches) {
+                    String match1Name = match1.getMatchName();
+                    match1Name = match1Name.replaceAll("\\d", "");
+                    if (match1Name.equals(nextMatchName) && match1.hasSpace()) {
+                        int result = match.findMatchResults();
+                        switch (result) {
+                            case 0:
+                                break;
+                            case 1:
+                                System.out.println("TESTTT");
+                                match1.addTeam(teamOne);
+                                break;
+                            case 2:
+                                match1.addTeam(teamTwo);
+                                break;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
     public void ArrangeMatches() {
         Date date = new Date();
         String[] matchNames = {"Eight-finals", "Quarterfinals", "Semifinals", "Final"};

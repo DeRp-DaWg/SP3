@@ -61,6 +61,19 @@ public class UI {
                 printAllMatches();
             }
         }
+        Match match1 = tournament.getMatches().get(0);
+        match1.setScore(6);
+        tournament.createOutcome(match1);
+        Match match2 = tournament.getMatches().get(1);
+        match2.setScore(-8);
+        tournament.createOutcome(match2);
+        Match match3 = tournament.getMatches().get(8);
+        match3.setScore(4);
+        tournament.createOutcome(match3);
+        printAllMatches();
+        //Match matchhh = tournament.getMatches().get(8);
+        //matchhh.setScore(7);
+        //tournament.createOutcome(matchhh);
 
         /*
         tournament.ArrangeMatches();
@@ -84,6 +97,40 @@ public class UI {
         }
         */
     }
+    /*
+    public void createOutcome(Match match) {
+        Team teamOne = match.getTeams()[0];
+        Team teamTwo = match.getTeams()[1];
+        String[] matchNames = {"Eight-finals", "Quarterfinals", "Semifinals", "Final"};
+        String matchName = match.getMatchName();
+        matchName = matchName.replaceAll("\\d", "");
+        for (int i = 0; i < matchNames.length; i++) {
+            if (matchNames[i].equals(matchName)) {
+                if (matchNames[i].equals(matchNames[matchNames.length-1])) {
+                    break;
+                }
+                String nextMatchName = matchNames[i+1];
+                for (Match match1 : tournament.getMatches()) {
+                    String match1Name = match1.getMatchName();
+                    match1Name = match1Name.replaceAll("\\d", "");
+                    if (match1Name.equals(nextMatchName) && match1.hasSpace()) {
+                        int result = match.findMatchResults();
+                        switch (result) {
+                            case 0:
+                                break;
+                            case 1:
+                                match1.addTeam(teamOne);
+                                break;
+                            case 2:
+                                match1.addTeam(teamTwo);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }*/
+
     public void seeTheMatches () {
         System.out.println("Vil du se alle kampene? Y/N: ");
         String ask = sc.nextLine().toLowerCase();
