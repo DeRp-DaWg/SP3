@@ -53,12 +53,12 @@ public class KnockoutTournament extends Tournament {
         String[] matchNames = {"Eight-finals", "Quarterfinals", "Semifinals", "Final"};
         int matchCount = 8;
         int iteration = 0;
+        long time = 0;
+        long hours = 2;
         while (matchCount != 1) {
             for (int i = 1; i < matchCount+1; i++) {
                 Match match = new Match(matchNames[iteration]+i);
-                matches.add(match);
-                long time = date.getTime();
-                long hours = 2;
+                time = date.getTime();
                 time += 1000*60*60*hours;
                 date.setTime(time);
                 try {
@@ -67,11 +67,21 @@ public class KnockoutTournament extends Tournament {
                 catch (ParseException e) {
                     e.printStackTrace();
                 }
+                matches.add(match);
             }
             iteration++;
             matchCount /= 2;
         }
         Match match = new Match(matchNames[matchNames.length-1]);
+        time = date.getTime();
+        time += 1000*60*60*hours;
+        date.setTime(time);
+        try {
+            match.setTime(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
         matches.add(match);
 
         //teams = UI.getTeams();
