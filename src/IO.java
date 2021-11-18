@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class IO {
+    private Connection conn = null;
     // database URL
     static final String DB_URL = "jdbc:mysql://localhost/TournamentDB";
 
@@ -26,7 +27,6 @@ public class IO {
 
     //Sådan tilføjer man data. Skal ændres senere
     public void saveData() {
-        Connection conn = null;
         String sql = "INSERT INTO Tournament (id, teamname, playerName, matchID)"
                 + "VALUES (?,?,?,?)";
 
@@ -48,7 +48,7 @@ public class IO {
 
     // Tilføj et team
     public void addTeam(String teamName){
-        Connection conn = null;
+
         String sql = "INSERT INTO Teams(teamName, teamTournamentScore, teamGoalScore, stillInPlay) VALUES (?, ?, ?, ?)";
 
         try {
@@ -70,11 +70,9 @@ public class IO {
     // Tilføj players
     public void addPlayer(String[] playerNames, int foreignKey){
         for (String playerName : playerNames) {
-
             playerName = playerName.replace(" ", "");
             System.out.println(playerName);
 
-            Connection conn = null;
             String sql = "INSERT INTO Players(playerName, teamID) VALUES (?, ?)";
 
             try {
@@ -92,6 +90,25 @@ public class IO {
         }
     }
 
+    public void insertMatchToDb(String matchName, String teamOne, String teamTwo, int score){
+        String sql = "INSERT INTO Matches(matchName, teamOne, teamTwo, score) VALUES (?, ?, ?, ?)";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setString(1, matchName);
+            pstmt.setString(2, teamOne);
+            pstmt.setString(3, teamTwo);
+            pstmt.setInt(4, score);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Tournament readData() {
         Match[] matches;
         Team[] teams;
@@ -100,7 +117,6 @@ public class IO {
         int lineCount;
 
         String[] field_data = new String[40];
-        Connection conn = null;
         Statement stmt = null;
         PreparedStatement pstmt = null;
 
