@@ -220,7 +220,7 @@ public class IO {
         }
     }
 
-    public void updateTeamScore(int teamID, int updateScore){
+    public void updateTeamScore(int teamID, int updateScore, String getMatchName){
         String sql = "UPDATE teams SET teamGoalScore = teamGoalScore + " + updateScore + " WHERE id = " + teamID;
 
         try {
