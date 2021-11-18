@@ -61,8 +61,9 @@ public class KnockoutTournament extends Tournament {
                 time = date.getTime();
                 time += 1000*60*60*hours;
                 date.setTime(time);
+                Date tempDate = (Date)date.clone();
                 try {
-                    match.setTime(date);
+                    match.setTime(tempDate);
                 }
                 catch (ParseException e) {
                     e.printStackTrace();
