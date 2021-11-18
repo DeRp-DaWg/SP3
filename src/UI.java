@@ -26,8 +26,8 @@ public class UI {
 
     public void start() {
         System.out.print("Vil du lave en ny turnering? Y/N  ");
-
-        if (sc.nextLine().toLowerCase().equals("y")) {
+        String ask = sc.nextLine().toLowerCase();
+        if (ask.equals("y")) {
             try {
                 createPlayers();
             }
@@ -35,22 +35,26 @@ public class UI {
                 e.printStackTrace();
             }
             createTournament();
-        } else {
-            createTournamentFromDB();
-            teams = tournament.getTeams();
+        }
+
+        if(ask.equals("n")){
+            System.out.println("Vil du tilføje point til et eksisterende team? Y/N");
+            ask = sc.nextLine().toLowerCase();
+            if(ask.equals("y")){
+                System.out.println("vælg et team, skriv derefter et komma og antallet af point. Fx 1, 3");
+                ask = sc.nextLine().toLowerCase();
+                String[] splitAsk = ask.split(",");
+                io.updateTeamScore(Integer.parseInt(splitAsk[0]), Integer.parseInt(splitAsk[1]));
+                System.out.println("Dine data er nu gemt!");
+            }else{
+                createTournamentFromDB();
+                teams = tournament.getTeams();
+            }
         }
         tournament.ArrangeMatches();
     }
 
     public void createPlayers() throws IOException {
-        System.out.println("Tast t for at tilføje point til et team: ");
-        String chooseOption = sc.nextLine();
-
-        if(chooseOption.equals("k")){
-            System.out.println("Vis data");
-            return;
-        }
-
         io.clearTable("Matches");
         io.clearTable("Teams");
         io.clearTable("Players");
