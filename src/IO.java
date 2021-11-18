@@ -198,10 +198,8 @@ public class IO {
         PreparedStatement pstmt = null;
 
         try {
-            System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            System.out.println("Creating statement...");
             stmt = conn.createStatement();
 
             //CREATING TEAMS
