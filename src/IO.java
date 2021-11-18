@@ -255,8 +255,13 @@ public class IO {
                 int teamOne = rs.getInt("teamOne");
                 int teamTwo = rs.getInt("teamTwo");
                 int score = rs.getInt("score");
-                Team[] matchTeams = {teams[teamOne-1], teams[teamTwo-1]};
-                matches[ID-1] = new Match(matchTeams, matchName, score);
+                if (!(teamOne <= 0)) {
+                    Team[] matchTeams = {teams[teamOne-1], teams[teamTwo-1]};
+                    matches[ID-1] = new Match(matchTeams, matchName, score);
+                } else {
+                    matches[ID-1] = new Match(matchName);
+                }
+
             }
             ArrayList<Match> matchesAL = new ArrayList<>(Arrays.asList(matches));
             Tournament tournament = new KnockoutTournament("Tournament Name!", teams, matchesAL);
