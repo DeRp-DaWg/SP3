@@ -42,7 +42,7 @@ public class UI {
             }
 
             if (ask.equals("n")) {
-                System.out.println("Vil du tilføje point til et eksisterende team? Y/N:  ");
+                System.out.println("Vil du ændre positionen på et eksisterende team? Y/N:  ");
                 ask = sc.nextLine().toLowerCase();
                 if (ask.equals("y")) {
                     System.out.println("Skriv finalenavnet efterfulgt af et komma, og to forskellige teams der også er separeret af et komma. Fx quarterfinals1, 1, 3: ");
