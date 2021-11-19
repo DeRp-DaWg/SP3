@@ -26,7 +26,7 @@ public class UI {
 
     public void start() throws SQLException {
         while(true){
-            System.out.print("Vil du lave en ny turnering? Y/N:  ");
+            System.out.print("\nVil du lave en ny turnering? Y/N:  ");
             String ask = sc.nextLine().toLowerCase();
             if (ask.equals("y")) {
                 try {
