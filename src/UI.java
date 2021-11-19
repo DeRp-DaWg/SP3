@@ -26,72 +26,72 @@ public class UI {
 
     public void start() throws SQLException {
         while(true){
-        System.out.print("Vil du lave en ny turnering? Y/N:  ");
-        String ask = sc.nextLine().toLowerCase();
-        if (ask.equals("y")) {
-            try {
-                createPlayers();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            createTournament();
-            tournament.ArrangeMatches();
-            for (Match match : tournament.getMatches()) {
-                io.insertMatchToDb(match);
-            }
-        }
-
-        if (ask.equals("n")) {
-            System.out.println("Vil du tilføje point til et eksisterende team? Y/N:  ");
-            ask = sc.nextLine().toLowerCase();
+            System.out.print("Vil du lave en ny turnering? Y/N:  ");
+            String ask = sc.nextLine().toLowerCase();
             if (ask.equals("y")) {
-                System.out.println("Skriv finalenavnet efterfulgt af et komma, og to forskellige teams der også er separeret af et komma. Fx quarterfinals1, 1, 3: ");
-                ask = sc.nextLine();
-                String[] splitAsk = ask.split(",");
-                String splitAskFirst = splitAsk[0].replace(" ", "");
-                int splitAskSecond = Integer.parseInt(splitAsk[1].replace(" ", ""));
-                int splitAskThird = Integer.parseInt(splitAsk[2].replace(" ", ""));
-                io.updateTeamScore(splitAskFirst, splitAskSecond, splitAskThird);
-                System.out.println("Dine data er nu gemt!");
-            } else {
-                createTournamentFromDB();
-                teams = tournament.getTeams();
-
+                try {
+                    createPlayers();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                createTournament();
                 tournament.ArrangeMatches();
-                io.clearTable("Matches");
                 for (Match match : tournament.getMatches()) {
                     io.insertMatchToDb(match);
                 }
-                printAllMatches();
-            }
-            System.out.println("Vil du tilføje en score for en kamp? Y/N");
-            ask = sc.nextLine().toLowerCase();
-            if (ask.equals("y")) {
-                printAllMatches();
-                System.out.println("Skriv navnet på kampen: ");
-                String inputMatchName = sc.nextLine();
-                for (Match match : tournament.getMatches()) {
-                    if (match.getMatchName().equals(inputMatchName)) {
-                        System.out.println("Hvor mange point havde vinderen?");
-                        int score = Integer.parseInt(sc.nextLine());
-                        System.out.println("Hvem vandt? 1 eller 2");
-                        int winningTeam = Integer.parseInt(sc.nextLine());
-                        if (winningTeam == 1) {
-                            match.setScore(score);
-                            tournament.createOutcome(match);
-                        } else {
-                            match.setScore(-score);
-                            tournament.createOutcome(match);
-                        }
-                    }
-                }
-                for (Match match : tournament.getMatches()) {
-                    io.updateMatchInDB(match);
-                }
             }
 
+            if (ask.equals("n")) {
+                System.out.println("Vil du tilføje point til et eksisterende team? Y/N:  ");
+                ask = sc.nextLine().toLowerCase();
+                if (ask.equals("y")) {
+                    System.out.println("Skriv finalenavnet efterfulgt af et komma, og to forskellige teams der også er separeret af et komma. Fx quarterfinals1, 1, 3: ");
+                    ask = sc.nextLine();
+                    String[] splitAsk = ask.split(",");
+                    String splitAskFirst = splitAsk[0].replace(" ", "");
+                    int splitAskSecond = Integer.parseInt(splitAsk[1].replace(" ", ""));
+                    int splitAskThird = Integer.parseInt(splitAsk[2].replace(" ", ""));
+                    io.updateTeamScore(splitAskFirst, splitAskSecond, splitAskThird);
+                    System.out.println("Dine data er nu gemt!");
+                } else {
+                    createTournamentFromDB();
+                    teams = tournament.getTeams();
+
+                    tournament.ArrangeMatches();
+                    io.clearTable("Matches");
+                    for (Match match : tournament.getMatches()) {
+                        io.insertMatchToDb(match);
+                    }
+                    printAllMatches();
+                }
+                System.out.println("Vil du tilføje en score for en kamp? Y/N");
+                ask = sc.nextLine().toLowerCase();
+                if (ask.equals("y")) {
+                    printAllMatches();
+                    System.out.println("Skriv navnet på kampen: ");
+                    String inputMatchName = sc.nextLine();
+                    for (Match match : tournament.getMatches()) {
+                        if (match.getMatchName().equals(inputMatchName)) {
+                            System.out.println("Hvor mange point havde vinderen?");
+                            int score = Integer.parseInt(sc.nextLine());
+                            System.out.println("Hvem vandt? 1 eller 2");
+                            int winningTeam = Integer.parseInt(sc.nextLine());
+                            if (winningTeam == 1) {
+                                match.setScore(score);
+                                tournament.createOutcome(match);
+                            } else {
+                                match.setScore(-score);
+                                tournament.createOutcome(match);
+                            }
+                        }
+                    }
+                    for (Match match : tournament.getMatches()) {
+                        io.updateMatchInDB(match);
+                    }
+                }
+
+            }
         }
-    }
     }
     public void seeTheMatches () {
         System.out.println("Vil du se alle kampene? Y/N: ");
