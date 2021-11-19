@@ -45,7 +45,7 @@ public class UI {
             System.out.println("Vil du tilføje point til et eksisterende team? Y/N:  ");
             ask = sc.nextLine().toLowerCase();
             if(ask.equals("y")){
-                System.out.println("Skriv finalenavnet efterfulgt af et komma, af to forskellige teams der er separeret af et komma. Fx quarterfinals1, 1, 3: ");
+                System.out.println("Skriv finalenavnet efterfulgt af et komma, og to forskellige teams der også er separeret af et komma. Fx quarterfinals1, 1, 3: ");
                 ask = sc.nextLine();
                 String[] splitAsk = ask.split(",");
                 String splitAskFirst = splitAsk[0].replace(" ", "");
